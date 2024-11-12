@@ -1,3 +1,6 @@
- 
+import sys
+sys.stdin = open('input.txt', 'r')
+sys.stdout = open('output.txt', 'w')
 
-print("hello world")
+number = int(input())  
+print(number)         
