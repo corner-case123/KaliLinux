@@ -7,9 +7,11 @@
 using namespace std;
 
 
-
 int main(){
-	ll t ; cin >> t ; 
-	while(t--) solve() ;
-	return 0 ; 
+	unordered_map<string,ll> ct ;
+	string s ;
+	while(getline(cin,s)){
+		cout << s ;
+	}
+	return 0 ;
 }

@@ -1,0 +1,3 @@
+// implement the global round D no problem
+// and again simulate to the soln
+//what was left to be thought about 
