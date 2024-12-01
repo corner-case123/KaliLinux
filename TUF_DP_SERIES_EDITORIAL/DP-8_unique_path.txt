@@ -1,0 +1,4 @@
+
+-> this is an old problem where we have to find the number of paths from top left corner to bottom  right corner 
+-> def : the dp[i][j]  means the number of ways to reach cell (i,j) 
+-> transition :  dp[i][j] = dp[i-1][j] + dp[i][j-1] ; (from a cell we can only move right or down)

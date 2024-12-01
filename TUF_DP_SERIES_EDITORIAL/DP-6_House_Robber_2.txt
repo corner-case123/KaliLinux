@@ -1,0 +1,42 @@
+
+
+-> now this problem is just a continuation of dp-5 
+-> the additional constraint is : the arr is circular 
+	-> it means we cannot simultaneously steal from the first and last house (if n>1)
+-> so what do we need to change :	
+	-> we can simply solve the problem twice : first find max considering the first element 
+	-> and second not considering the first element (a[0]=0) 
+	-> if we consider the first element then we cannot consider the last element 
+	-. if we dont consider the first element then we can consider the last element
+	-> a corner case is : if (n==1) return a[0] (here first and last index is same)
+	
+-> both recursive and iterative soln are similar just solve twice 
+	
+
+	
+	
+class Solution { // Iterative
+public:
+    int rob(vector<int>& a) {
+        ll n = a.size() ;
+        vll dp(n,0) ;
+        if (n==1) return a[0] ;
+		for(ll i=0;i<n;i++){
+			if (i-2>=0) dp[i] = max(dp[i],dp[i-2]+a[i-2]) ;
+			if (i-1>=0) dp[i] = max(dp[i],dp[i-1]) ;
+		}
+		ll mx1 = dp[n-1] ;
+		if (n-2>=0) mx1 = max(mx1,dp[n-2]+a[n-2]) ;
+		
+		
+        a[0] =  0  ;
+        dp.assign(n,0);
+		for(ll i=0;i<n;i++){
+			if (i-2>=0) dp[i] = max(dp[i],dp[i-2]+a[i-2]) ;
+			if (i-1>=0) dp[i] = max(dp[i],dp[i-1]) ;
+		}
+		ll mx2 = dp[n-1]+a[n-1] ;
+		if (n-2>=0) mx2 = max(mx2,dp[n-2]+a[n-2]) ;
+        return max(mx1,mx2) ;
+    }
+};

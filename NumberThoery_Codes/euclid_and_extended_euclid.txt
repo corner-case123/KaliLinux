@@ -1,0 +1,129 @@
+code : (this finds a soln for ax+by=gcd(a,b))
+
+	tuple<ll, ll, ll> extendedEuclid(ll a, ll b) {
+		if (b == 0) {
+			return {a, 1, 0};
+		}
+		auto [gcd, x1, y1] = extendedEuclid(b, a % b);
+		ll x = y1;
+		ll y = x1 - (a / b) * y1;
+		return {gcd, x, y};
+	}
+
+code : (using general eqn for finding soln under condn) [this portion is taken from gpt]
+
+-> using general-soln this finds (x,y) such that abs(x)+abs(y) in min
+-> before using this function we must find a soln to the eqn using extended-euclid
+
+-> how did we get those moving direction (ie : whether to add or subtract from x and y to minimize or maximize the abs(x)+abs(y)) 
+-> x  = x1 + k*(b/g) , it means the x are greater than x1 
+	-> so we want to subtract from x1 to make abs(x) close to zero
+-> y = y1 - k*(a/g) , it means the y are smaller than  y1 
+	-> so we want to add to y1 to make abs(y) close to zero 
+-> to maximize the abs(x)+abs(y) we do the exact opposite 
+	-> ie : add to x1 and subtract from y1 
+
+	void minimizeSolution(ll a, ll b, ll& x, ll& y, ll gcd) {
+		ll stepX = b / gcd; 
+		ll stepY = a / gcd; 
+		while (true) {
+			auto [nextX, nextY] = make_pair(x - stepX, y + stepY);  // Move towards minimizing |x| + |y|
+			if (abs(nextX) + abs(nextY) < abs(x) + abs(y)) {
+				x = nextX;
+				y = nextY;
+			} else {
+				break;
+			}
+		}
+	}
+
+-> this below function finds (x,y) such that abs(x)+abs(y) is max 
+
+	void maximizeSolution(ll a, ll b, ll& x, ll& y, ll gcd) {
+		ll stepX = b / gcd;  
+		ll stepY = a / gcd;  
+		while (true) {
+			auto [nextX, nextY] = make_pair(x + stepX, y - stepY);  // Move towards maximizing |x| + |y|
+			if (abs(nextX) + abs(nextY) > abs(x) + abs(y)) {
+				x = nextX;
+				y = nextY;
+			} else {
+				break;
+			}
+		}
+	}
+
+
+
+***Basic Euclid :
+	->g = gcd(a,b)
+	-> by def : a = g*x , b = g*y
+	-> lets assume a >= b 
+
+	-> gcd(a,b) = gcd(a-b,b) [we know]
+	-> gcd(g*x,g*y) = gcd(g*(x-y),g*y)
+	-> gcd(g*x,g*y) = gcd(g*x1,g*y)
+	.... we can keep repeating this process
+	-> gcd(g*x,g*y) = gcd(a%b,b) = gcd(b,a%b)
+
+***Extended Euclid (used to find soln for ax+by=gcd(a,b))
+
+	ax+by = gcd(a,b) 
+	gcd(b,a%b) = bx1 + (a%b)y1
+	gcd(b,a%b) = bx1 + (a-[a/b]*b)y1
+	gcd(b,a%b) = ay1 + b(x1-[a/b]*y1)
+
+	now comparing the co-eff a ,b :
+
+	x = y1 ...........(1)
+	y = x1  - [a/b]*y1 ............(2) 
+
+
+***general soln for ax+by = g  [g=gcd(a,b)]
+(general soln eqns are used to find soln under various condn)
+
+	lets say (x,y) is general soln of the eqn
+	and (x1,y1) is the particular soln
+
+	ax+by =g  ; ax1 +  by1 = g  ;
+	a(x-x1) + b(y-y1) = 0  ;
+	a(x-x1) = -b(y-y1) ;
+
+	x-x1 = -(b/a)*(y-y1)
+	x-x1 = -(b/(k1*g))*(y-y1)  [a=k1*g]
+
+	x-x1 = k *(b/g)
+
+	or x =  x1 + k*(b/g)  ----- (1)
+
+	now substituting value of x-x1
+
+	a*k*(b/g) = -b*(y-y1)
+	y-y1  =  - k * (a/g)
+
+	y  = y1 - k*(a/g) ..... (2)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

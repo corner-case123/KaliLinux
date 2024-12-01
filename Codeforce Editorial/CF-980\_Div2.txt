@@ -1,0 +1,22 @@
+
+
+problem A :
+
+-> this is a simple math  problem 
+-> if a>=b ans is a 
+-> else if b-a > a answer is  0 
+-> else ans is a - (b-a)
+-> note : eqn is a-x >= b-2*x (x>=b-a) (where x is the amount of depo that we have to make)
+
+problem B :
+
+-> we idea is simple we have two value from which we have taken , also another from which we havenot
+-> it is better to pick the value from which we havenot yet taken
+-. because we dont know the value of either of them
+
+problem C :
+
+-> n arrays of size 2 , which i have concatenate in such an order that number of inversios are min
+-> i got a simple idea , that print the array first that has the lowest value 
+-> if they have the same first value then compare the second value (simply use a multiset)
+-> but i dont the formal proof of this (tho this is a candidate soln)

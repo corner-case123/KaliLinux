@@ -1,13 +1,6 @@
-#include <bits/stdc++.h>
-#define ln endl
-#define ll long long
-#define vll vector<ll>
-#define pll pair<ll, ll>
-#define ff first
-#define ss second
-using namespace std;
-
-ll mod = 1e9 + 7;
+-> the below code is miller rabin prime test , which is very efficient for detecting prime
+-> time complexity : O(k*logn) [where k is a small constant]
+-> space : O(logn)
 
 // Modular multiplication to handle large numbers
 ll mod_mul(ll a, ll b, ll mod) {
@@ -71,13 +64,3 @@ bool is_prime(ll n, int k = 5) {
     return true;  // Probably prime
 }
 
-int main() {
-    ios_base::sync_with_stdio(false);
-    cin.tie(NULL);
-    ll t ; cin >> t ; 
-    while(t--){
-    	ll n ; cin >> n ;
-    	cout << (is_prime(n)?"YES":"NO") << ln ;
-    }
-    return 0;
-}

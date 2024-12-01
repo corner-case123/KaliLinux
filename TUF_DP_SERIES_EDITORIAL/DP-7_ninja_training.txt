@@ -1,0 +1,4 @@
+
+-> the constraints is the same training cannot be done two cons. days 
+-> dp[i][j]  means the max point we can gain if we 'j'-th task on the i-th day 
+-> dp[i][j] = max(dp[i-1][j"]) + a[i][j] (where j" means all the tasks other than j itself)

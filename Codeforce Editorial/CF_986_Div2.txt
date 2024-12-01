@@ -1,0 +1,32 @@
+
+
+problem A :
+	->the constraints are small , so we can just take a large string and iterate it 
+	->this will suffice for the answer
+	->note that if the string size is too small then , it might give wa
+	->the editorial shows the min number of repeats that we need to determine the answer
+	->here string refers to the size of the path
+	
+	
+problem B :
+	-> this problem is straight forward math formula and some small case analysis
+	-> the seq :  c , c+b , c+2b , c+3b ... (arithmetic  progression)
+	-> if we know how many numbers in the sequence are <= n-1 , then its done !
+	-> the answer is simply (n-1)-(number of elements in seq <=n-1) ;
+	-> to find it we can simple apply math eqn
+	-> also for (b=0,c=0 and b=0,c>0) there are some edge cases 
+	-> these cases have to be handled separately
+	
+problem C : (complexity :O(N) or O(N*logN))
+	-> this problem is seemingly very complex , but upon closer look it is very simple
+	-> as per the statement,we can say that the output is simple sum of a subarray(l,r)
+	-> (this is because anyone can only take one subarray)
+	-> but we dont know the first and last position of the output subarray
+	-> for this part we can run a loop for the first pos and run BinarySearch for the last pos
+	-> this will take O(N*logN) : but now how do we determine whether the subarray(l,r) is okay or not
+	-> we can keep two array forward cnt and backward count 
+	-> the forward count (f[i]) will say number of monsters that can be fed  if we only consider subarray[0,i]
+	-> the backward count (b[i]) will say number of monsters that can be fed if we only consider subarray[i,n-1]
+	-> then for subarray[l,r] -> we check f(l-1)+b(r+1) >= m 
+	-> is the condition is satisfied : then the subarray can be considered as valid
+	-> then we take the max sum of all valid subarray sums 

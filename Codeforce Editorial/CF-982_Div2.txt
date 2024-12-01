@@ -1,0 +1,16 @@
+problem  A :
+
+-> idea : the max width and max height will be needed for sure . inside than we can overlap/put everything else 
+-> since the max height and max width is needed , the answer is simply 2 * (max_h + max_w) .
+
+problem B : (hint -> n <= 2000)
+
+here we have to delete least elements so that after applying stalin sort we can get non-desc arr
+-> idea : the ans must have a starting value 
+-> before the starting value all elements will be deleted
+-> and after the starting element , the elements larger than this will also be deleted
+	-> this is done to make the arr non-desc after applying stalin
+	
+	
+problem C :
+

@@ -1,0 +1,58 @@
+
+
+problem A :
+-> the constraint is very low , just run a while loop ans print the answer
+
+problem B :
+-> the constraint is low , it allows O(n^3) soln , so just brute force it 
+
+problem C :	O(n) or O(nlogn)
+
+-> this was a classical example of overthinking , where i thought too much and missed a much simple soln
+-> the irony is the correct soln was hidden in my wrong soln 
+-> what i thought wrong was , for each index i considered the value of i+1 and i-1 and ran greedy
+-> the issue here is ..we can only decide the present optimal from a previous optimal 
+-> ie : for i we can only consider (i,i-1) and (n-1-i,n-i)
+-> what i did was considered (i-1,i,i+1) and (n-2-i,n-i-i,n-i)
+-> this brings a confliction that i am trying to decide the present optimal based something that i haven't yet calculated
+-> ie : (i,i+1) and (n-2-i,n-1-i)
+-> which is a major flaw 
+
+-> this problem also has a more advanced dp soln
+->because there is a choice of each pos. (to swap or not to)
+
+
+
+problem D : O(n) or O(nlogn)
+
+-> this is a classical problem of subarray sum = 0 (find the number of them)
+-> we know this format x + [subarray with sum 0 ] = x ;
+-> we just need to find the value of x 
+-> we can say x will be a prefix sum of the array[1,l1-1] for the first subarray[l1,r1] with sum 0
+-> then for the second subarray[l2,r2] with sum=0 it will be [r1+1,l2-1]  
+-> we can keep track of them using a set .. total time :O(nlogn)
+-> note that : 0 can also be prefix (ie: x can be empty or x=0)
+
+
+
+
+problem E : O(n) or O(nlogn)
+-> we need to make the permutation simple ..
+-> now we can see that the max number of swaps is n-1 (we just naively swap to get a[i]=i)
+-> but there is also an optimal way, which allows us to fix two numbers at once using 1 operation
+-> it is  using p[p[i]] = i
+-> we use a map to keep track of the index of the values
+-> when we find an index which is not satisfied ..we run the if statement
+-> basically we keep a[i] at i , but we change a[a[i]] to i (to satisfy the condn)
+-> this way we ensure that with each op we can surely fix 2 indices
+-> after swapping we also make necessary updates 
+
+
+
+problem F :
+
+-> i have not seen such a scam problem before ..it is pure observation based 
+-> here : we just need to find  index of first number div by k and mul. it by n to get the index of the n-th number div by k
+-> thats just a simple observation 
+-> here we just have to get the idea that fib(i) % k can be found for relatively small value of i 
+-> even tho the proof is not clear .. but it never hurts to give a submission

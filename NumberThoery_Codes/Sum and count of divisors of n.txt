@@ -1,0 +1,50 @@
+#include <bits/stdc++.h>
+#define ln endl
+#define ll long long
+#define vll vector<ll>
+#define pll pair<ll, ll>
+using namespace std;
+
+ll mod = 1e9 + 7;
+ 
+vll primes ; // stores the primes upto 1e6
+
+ll calculate_no_of_div(ll n){  // it calculates the number of divisors of n 
+	ll ans  = 1  ;
+	for(auto e:primes){
+		if (e*e>n) break ; // this is a very imp condition and conceptual
+		ll ct = 1 ;
+		while(n%e==0) n/= e , ct++ ; 
+		ans *= ct  ;
+	}
+	if (n>1) ans *= 2 ;
+	return ans ;  
+}
+
+ll cal_sm_of_div(ll n){ // it calculates the sum of divisors of n  
+	ll ans = 1 ;
+	for(auto e:primes){
+		if (e*e >n) break ;   // this is a very imp condition and conceptual
+		ll sm = 1 , pow = 1 ;  
+		while(n%e==0) n/= e , pow *= e , sm += pow ;
+		ans *= sm ; 
+	}
+	if (n>1) ans *= (n+1) ;
+	return ans ;
+}
+
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+	// prime mark array
+    vll p(1e6+1,1) ;
+	// sieve 
+    for(ll i=2;i<=1e6;i++){ 
+    	if (p[i]==0) continue ;
+    	primes.push_back(i) ;
+    	for(ll j=i*i;j<=1e6;j+=i){
+    		p[j] = 0 ;
+    	}
+    }
+    return 0;
+}

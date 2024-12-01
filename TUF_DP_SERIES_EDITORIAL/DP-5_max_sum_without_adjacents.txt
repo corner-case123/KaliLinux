@@ -1,0 +1,51 @@
+
+-> it is a simple 1-D DP 
+-> Iterative :
+	-> for each state either we can arrive here from i-2 or i-1
+	-> if we come from i-2 then dp[i] = max(dp[i] , dp[i-2] + a[i-2]) ;
+	-> if we come from i-1 the we cant take a[i-1] . dp[i] = max(dp[i],dp[i-1]) ;
+	-> so , dp[i] means the max sum upto 'i'-th index without considering  a[i]
+	-> due to this def of dp[i] , the answer is :
+			max(dp[n-1]+a[n-1],dp[n-2]+a[n-2]) [here we are also considering the elements that were left out]
+	
+	
+-> Recursive :
+	-> the idea is same 
+	-> just top-down approach instead of bottom-up
+	
+	
+	
+	
+
+int findMaxSum(int *a, int n) { // Iterative
+		ll dp[n] = {0} ;
+		for(ll i=0;i<n;i++){
+			if (i-2>=0) dp[i] = max(dp[i],dp[i-2]+a[i-2]) ;
+			if (i-1>=0) dp[i] = max(dp[i],dp[i-1]) ;
+		}
+		ll mx = dp[n-1] + a[n-1] ;
+		if (n-2>=0) mx = max(mx,dp[n-2]+a[n-2]) ;
+		return mx ; 
+}
+
+
+class Solution{   // Recursive 
+public:	
+    vll dp ;
+    ll f(ll i,int *a,int n){
+        if (dp[i]!=-1){
+            return dp[i] ; 
+        }
+        ll mx = 0  ;
+        if (i-1>=0) mx = f(i-1,a,n) ;
+        if (i-2>=0) mx = max(mx,f(i-2,a,n)+a[i-2]) ;
+        return dp[i] = mx ; 
+    }
+	int findMaxSum(int *a, int n) {
+	    dp.resize(n,-1) ;
+	    f(n-1,a,n) ;
+		ll mx = dp[n-1] + a[n-1] ;
+		if (n-2>=0) mx = max(mx,dp[n-2]+a[n-2]) ;
+		return mx ; 
+	}
+};

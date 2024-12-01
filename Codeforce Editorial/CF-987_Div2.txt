@@ -1,0 +1,21 @@
+ problem A : 
+ 	the arr is sorted in non-asc order  and we have to sort it in non-desc order 
+	the idea is similar to a previous problem : we set all the element as the first element 
+	and then the ans is number of elements that are not equal to the first element 
+	**[fix the first element]
+
+problem B :
+	here we have to print "y/n" if we can sort the perm in asc order 
+	-> idea is simple : start  backwards (start from answer) and see if ther is any pattern
+	-> the obs is the dist between any value and its index cannot be more than  1 
+	[start from ans] or [start backwards]
+	
+	
+problem C :
+	-> target : for all the equal numbers their pairwise distance must be perfect square
+	-> for even  number , the ans is simple  : "1 1 2 2 3 3 .." 
+	-> for odd number , we have used a a triplet and all others are duplets
+	-> for the triplet : n >= 26 (3^2 + 4^2 = 5^2) 
+	-> after placing a triplet we checked if we can easily place all the duplets 
+	-> and it turned out we can and in some cased we have to place a duplet at dist 4 
+	-> [trial and error]

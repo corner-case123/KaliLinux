@@ -1,0 +1,16 @@
+
+
+-> for any base b : n = x*b^0 + y*b^1 + z*b^2 + .. (where x,y,z are )
+-> now , for  any number to have trailing zeroes in in its base representation , base can be max n 
+-> now , can we further break n , to find what other based can produce trailing zeroes
+-> for ex : 24 = 1*24^1 + 0*24^0
+			24 = 1*(4*6)^1 + 0*(4*6)^0
+			24 = 4*6^1 + 0*6^1				// 6 as base
+			24 = 1*4^2 + 2*4^1 + 0*4^0		// 4 as base 
+-> so basically the req. bases are  divisors of n greater than  1
+-> now if we use sqrt(n) for finding all the divisors for each n , it will be TLE
+-> we can use sieve to precompute all the primes upto 1e6 ( sqrt(1e12) is ~1e6 )
+-> using the prime factorization method we can find the number of divisors for  n 
+-> for the primes we will consider prime p  while (p*p <= n) 
+-> we have to use this condition : because total number of primes for n=1e6 is around 8e4
+-> this will still cause TLE , but for sqrt(8e4) * 1e4 it will pass easily

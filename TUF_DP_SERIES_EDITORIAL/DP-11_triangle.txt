@@ -1,0 +1,8 @@
+
+
+-> problem : there is a triangle given : 1st row  has 1 element , 2nd has 2 , 3rd has 3 and so on
+-> for each cell (i,j) we can move to (i+1,j) or (i+1,j+1) 
+
+-> def : dp[i]j[j] -> min cost to come to cell (i,j) 
+-> transition : dp[i][j] =  min(dp[i-1][j],dp[i-1][j-1]) + a[i][j]
+-> final ans is min of all the cells in the n-th row 

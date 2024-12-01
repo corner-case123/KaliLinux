@@ -1,0 +1,5 @@
+-> for n! we have to find its prime factorization 
+-> n = n * (n-1) * (n-2) * (n-3) .. 
+-> we can use dp to get the accumulated sum of powers of each prime divisor
+-> dp[101][101] -> dp[n][i] denotes power of prime div "i"  for number "n"
+-> for n = 100 , prime div can be upto 100

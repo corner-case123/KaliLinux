@@ -1,0 +1,3 @@
+
+-> this is a continuation of DP-8 : which is some cells might be blocked 
+-> so if a cell is blocked : dp[i][j] =  0 (rest are same)
