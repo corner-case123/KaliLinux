@@ -1,0 +1,3 @@
+-> in many problems , the result becomes larger than long long and we cant use long double due to precision issues
+-> in those cases , we have to use string multiplication 
+-> store the number in string , and use the same algo we do for multiplying numbers 

@@ -4,80 +4,22 @@
 #define vll vector<ll>
 #define pll pair<ll, ll>
 #define ff first
+#define vpll vector<pair<ll,ll>>
 #define ss second
 using namespace std;
 
-ll mod = 1e9 + 7;
+vector<double> cnt(1e6+1,0) ;
 
-// Modular multiplication to handle large numbers
-ll mod_mul(ll a, ll b, ll mod) {
-    ll res = 0;
-    a %= mod;
-    while (b) {
-        if (b & 1) {
-            res = (res + a) % mod;
-        }
-        a = (2 * a) % mod;
-        b >>= 1;
-    }
-    return res;
+void solve(){
+
+	return ;
 }
 
-// Modular exponentiation: (base^exp) % mod
-ll mod_exp(ll base, ll exp, ll mod) {
-    ll res = 1;
-    base %= mod;
-    while (exp) {
-        if (exp & 1) {
-            res = mod_mul(res, base, mod);
-        }
-        base = mod_mul(base, base, mod);
-        exp >>= 1;
-    }
-    return res;
-}
-
-// Miller-Rabin primality test
-bool is_prime(ll n, int k = 5) {
-    if (n < 2) return false;
-    if (n == 2 || n == 3) return true;
-    if (n % 2 == 0) return false;
-
-    // Decompose (n - 1) as 2^k * m
-    ll d = n - 1, r = 0;
-    while (d % 2 == 0) {
-        d /= 2;
-        r++;
-    }
-
-    // Test k witnesses
-    for (int i = 0; i < k; i++) {
-        ll a = 2 + rand() % (n - 3);  // Random base in range [2, n-2]
-        ll x = mod_exp(a, d, n);      // Compute a^d % n
-        if (x == 1 || x == n - 1) continue;
-
-        bool composite = true;
-        for (ll j = 0; j < r - 1; j++) {
-            x = mod_mul(x, x, n);      // Square x: x = x^2 % n
-            if (x == n - 1) {
-                composite = false;
-                break;
-            }
-        }
-
-        if (composite) return false;  // If composite for this witness
-    }
-
-    return true;  // Probably prime
-}
 
 int main() {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
-    ll t ; cin >> t ; 
-    while(t--){
-    	ll n ; cin >> n ;
-    	cout << (is_prime(n)?"YES":"NO") << ln ;
-    }
+
     return 0;
 }
+

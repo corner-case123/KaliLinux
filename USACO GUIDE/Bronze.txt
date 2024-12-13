@@ -1,0 +1,5 @@
+
+-> NP complete -> if we solve a single problem of the NP complete problem-set , then we can solve all of them
+	because all of them have the similar-tasks beneath them
+	
+-> if P=NP  then whoever would understand the soln , would also be able to solve it in the first place 

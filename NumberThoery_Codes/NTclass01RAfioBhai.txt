@@ -1,0 +1,6 @@
+
+
+-> for  a / b  let quotient be 'q' and remainder 'r'
+->  a - r = b*q 
+-> for finding rem. for negative number : do  q-- , r++ ;
+	-> this is because if we reduce right side by  b , the same has to be done with left side (increase rem. by b)

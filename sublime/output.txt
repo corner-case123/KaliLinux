@@ -1,5 +1,2 @@
-YES
-YES
-NO
-YES
-NO
+Case 1: 22
+Case 2: 30
