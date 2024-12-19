@@ -1,0 +1,29 @@
+-> task : find number digits in for a seq of multiplication (a*b*c*d) for a given base
+-> floor(log10(n)) + 1 -> number of digits in  n [we can prove this by testing]
+-> note that : log(n!) = log(n) + log(n-1) + log(n-3) + ..
+-> and if we have to change the base then we can use : loga(n!) = loga(b) * logb(n!)  [base formula]
+
+vector<double> cnt(1e6+1,0) ;
+
+void solve(){
+	ll n , b ; cin >> n >> b ;
+	if (n==0){
+		cout << 1 << ln ;
+		return ;
+	}
+	cout << (ll)floor(cnt[n]/log10(b)) + 1 << ln ;
+	return ;
+}
+
+
+int main() {
+    double sm = 0 ; 
+    for(ll i=1;i<=1e6;i++){
+    	sm += log10(i) ;
+    	cnt[i] = sm ; 
+    }
+    solve() ;
+    return 0;
+}
+
+

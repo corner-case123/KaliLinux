@@ -1,0 +1,2 @@
+-> lightOJ has a very strict memory : here we cannot arbitrarily use long long , we have to use int where-ever we
+	can, and also we have to use long long and unsigned long long where-ever we have to 

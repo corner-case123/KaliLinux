@@ -1,3 +1,41 @@
 -> in many problems , the result becomes larger than long long and we cant use long double due to precision issues
 -> in those cases , we have to use string multiplication 
 -> store the number in string , and use the same algo we do for multiplying numbers 
+
+
+
+code : (below is a code that can be used to multiply two strings efficiently)
+
+string multiplyStrings(const string &num1, const string &num2) {
+    // If one of the numbers is zero, the product is zero
+    if (num1 == "0" || num2 == "0") return "0";
+
+    int n = num1.size(), m = num2.size();
+    vector<int> result(n + m, 0);
+
+    // Reverse both strings for easier calculation
+    string rev1 = string(num1.rbegin(), num1.rend());
+    string rev2 = string(num2.rbegin(), num2.rend());
+
+    // Perform digit-by-digit multiplication
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < m; j++) {
+            result[i + j] += (rev1[i] - '0') * (rev2[j] - '0');
+            if (result[i + j] >= 10) {
+                result[i + j + 1] += result[i + j] / 10;
+                result[i + j] %= 10;
+            }
+        }
+    }
+
+    // Remove leading zeros from the result vector
+    while (result.back() == 0) result.pop_back();
+
+    // Convert the result vector back to a string
+    string product;
+    for (int i = result.size() - 1; i >= 0; i--) {
+        product += (result[i] + '0');
+    }
+
+    return product;
+}

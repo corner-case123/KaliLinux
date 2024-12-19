@@ -1,0 +1,52 @@
+-> MODULAR EXPONENTIATION :
+
+CODE : time -> O(log(b)) , space -> O(1) 
+
+[CODE]
+ll modularExponentiation(ll a, ll b, ll m) {   // Function to compute (a ^ b) % m efficiently
+    ll result = 1;
+    a %= m; // Handle cases where a >= m
+    while (b > 0) {
+        if (b % 2 == 1) { // If b is odd, multiply result with a
+            result = (result * a) % m;
+        }
+        a = (a * a) % m; // Square a and take mod m
+        b /= 2; // Divide b by 2
+    }
+    return result;
+}
+
+	example : 7^17 (mod 10) ->   7^16 . 7  ->  (49 ^ 8) .  7 -> (9^8) . 7  ->(  81 ^ 4 ) . 7  ->  (1 ^ 4) . 7  ->  7 (mod 10) 
+	[ basically we can replace any base with (base mod m) ]
+
+	PROBLEM : find the last n digits of  a^b    SOLN : just find  (a^b) mod (10^n)  which is very efficient 
+
+ 
+
+-> FINDING MODULAR INVERSE   :: time -> O(log(min(a,m)))
+
+[CODE] time and space  -> O(log(min(a,m)))
+tuple<ll, ll, ll> extendedGCD(ll a, ll b) {  // Function to compute gcd and the coefficients of Bezout's identity
+    if (b == 0)
+        return {a, 1, 0}; // Base case: gcd(a, 0) = a, coefficients (1, 0)
+    auto [gcd, x1, y1] = extendedGCD(b, a % b);
+    return {gcd, y1, x1 - (a / b) * y1};
+}
+
+ll modularInverse(ll a, ll m) {  // Function to find modular multiplicative inverse
+    auto [gcd, x, y] = extendedGCD(a, m);
+    if (gcd != 1) {
+        cerr << "No modular inverse exists because gcd(a, m) != 1.\n";
+        return -1; // Modular inverse doesn't exist
+    }
+    // x may be negative, so bring it to the range [0, m)
+    return (x % m + m) % m;
+}
+
+
+MODULAR DIVISION  -> format ( a^x - b^y ) / (p^q - r^s) 
+
+process -> find a^x , b^y , p^q , r^s using modular expo. 
+	-> then find numerator =  (a^x - b^y+m) % m and  denominator = (p^q - r^s + m) % m
+	-> since m is a prime , denominator will have a modular inverse 
+	-> find the modular inverse of denominator and multiply it with numerator to get the final result

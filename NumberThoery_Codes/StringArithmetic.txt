@@ -1,0 +1,47 @@
+############# STRING ARITHMETIC IS USUALLY DONE WHERE WE NEED TO STORE A VERY LARGE NUMBER > ULL .  IN THOSE CASES STRING COMES VERY HANDY ###########################
+
+
+-> DIVISIBILITY CHECK USING A STRING .
+
+
+formula : Ri = (Ri-1 * b + Di) % divisor [dp-formula] (R is the remainder,D is the digit and b is the base)
+proof : the proof is inductive 
+
+---CODE : (if the final rem is 0 , then we can say b|a)
+
+bool isDivisible(const string &num, ll divisor) {
+    ll remainder = 0;
+    // Traverse each digit in the string
+    for (char digit : num) {
+        remainder = (remainder * 10 + (digit - '0')) % divisor;
+    }
+    // Check if the remainder is 0
+    return remainder == 0;
+}
+
+
+-> CONVERSION OF A STRING FROM BASE 'A'  INTO  BASE 'B'
+-> time and space complexity : O(length of string) [both] [there is an additional log factor for time which is very small]
+
+-----CODE 
+
+string convertBase(const string &num, int baseA, int baseB) {
+    auto charToValue = [](char c) {
+        return (c >= '0' && c <= '9') ? c - '0' : c - 'A' + 10;
+    };
+    auto valueToChar = [](int value) {
+        return (value >= 0 && value <= 9) ? '0' + value : 'A' + (value - 10);
+    };
+    ll decimalValue = 0;
+    for (char c : num) {
+        decimalValue = decimalValue * baseA + charToValue(c);
+    }
+    if (decimalValue == 0) return "0";
+    string result;
+    while (decimalValue > 0) {
+        result.push_back(valueToChar(decimalValue % baseB));
+        decimalValue /= baseB;
+    }
+    reverse(result.begin(), result.end());
+    return result;
+}

@@ -1,14 +1,12 @@
-#include <bits/stdc++.h>
-#define ln endl
-#define ll long long
-#define vll vector<ll>
-#define pll pair<ll, ll>
-using namespace std;
+-> both function have a complexity : avg case -> sqrt(n)/ log2(sqrt(n))    worst case -> sqrt(n)   [this avg case is very important because most of the time the avg case is used]
+-> the number of divisors for n is  : approx  cuberoot(n)
 
-ll mod = 1e9 + 7;
- 
+FORMULA FOR CALCULATING SUM OF DIVISORS ->[APPROACH-2] sigma =  (p1^(e1+1)-1)/(p1-1) * (p2^(e2+1)-1)/(p2-1) * ...
+ -> in practice , the approach-1 is faster 
+
+[APPROACH-1]
+
 vll primes ; // stores the primes upto 1e6
-
 ll calculate_no_of_div(ll n){  // it calculates the number of divisors of n 
 	ll ans  = 1  ;
 	for(auto e:primes){
