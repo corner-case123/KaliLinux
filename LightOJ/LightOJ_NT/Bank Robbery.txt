@@ -1,0 +1,18 @@
+
+
+-> this is a prime example of pure observation , i had no idea how to solve it
+	-> so i just printed things
+-> first , for each A [10,1e5] i calculated A-B and printed them , it didnot say much
+-> then i thought about the simpler version of the problem 
+	-> for each A-B find the  number of A 
+	-> I found that for each A-B there was at least 1 and at most 2  A 
+	-> and there were very few A-B for which the count was 2 
+	-> then i got interested about the A-B with count 2 [count of valid A]
+	-> for each A-B  having count 2 (valid A) i printed the answers (A1 and A2)
+	-> I saw that starting from 18 , each A-B having (A-B) = 18+k*9  had count 2 (valid A)
+		-> also A1 = 19 + k*10 and A2 = 20 + k*10
+	-> what about A-B with count 1 (valid A) ?
+		-> for this I printed all the A-B with their soln (A1,A2)
+		-> the I saw the another pattern
+		-> the answer was A1" - (n-(a-b)) [where n is the next greater multiple of 9 >(a-b)  and A1" belongs to n1]
+	

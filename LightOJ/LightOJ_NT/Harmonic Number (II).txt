@@ -1,0 +1,23 @@
+
+-> as usually I have no clue how to solve this problem 
+-> lets print stuff and try to get some observations 
+-> for a number n = 101 , lets print all of its hermonic series terms (101/1 + 101/2 + .. + 101/101)
+	-> we can see that there are some number of 1 ,  some number of 2 , some number to 3 , upto 101 itself
+	-> then we print the count of them (ie :count of 1 ,count 2 ,...)
+-> after printing these things we can observe that , there is  a segment of i in which n/i = 1 ,  a segment of i in which n/i = 2 
+	-> and also they come sequentially , after segment of 1 , comes segment of 2 , then comes segment of 3/4 ....
+	
+Approach 1 :
+	-> lets define each segment [high,low] , we first start with high = n , calculate the value of this segment [val = n/high] 
+	-> we know that low -> [1,high] ,  we can find low using binary search
+	-> after finding low , we can do ans += (high-low+1)*val
+	-> for the next segment high = low(current low)-1 
+	-> we repeat the process as long as high >= 1
+
+Approach 2 :
+
+-> Sadly this approach is a bit too slow (3s > 2s) 
+	-> can we further optimize it ? yes we can !!
+	-> to find this we need to look at the printings (we did earlier) a bit more closely
+	-> turns out we dont need binary search for finding low ,we can use math
+	->  since we know high and val , we can find low from it  , low = (n)/(val+1) + 1  ;

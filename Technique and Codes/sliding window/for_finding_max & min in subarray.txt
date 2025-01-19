@@ -1,0 +1,53 @@
+
+-> https://www.hackerrank.com/challenges/queries-with-fixed-length/problem
+	-> here this code avoids using  set which caused a extra log factor 
+
+code :
+
+#include <bits/stdc++.h>
+#include <ext/pb_ds/assoc_container.hpp>
+#include <ext/pb_ds/tree_policy.hpp>
+using namespace __gnu_pbds;
+typedef tree<int, null_type, std::less<int>, rb_tree_tag, tree_order_statistics_node_update> indexed_set;
+#define ln '\n'
+#define ull unsigned  long long
+#define ll long long 
+#define vll vector<ll>
+#define pll pair<ll, ll>
+#define ff first
+#define vpll vector<pair<ll,ll>>
+#define pii pair<int,int> 
+#define ld long double
+#define ss second
+using namespace std;
+
+
+void setIO(const string io="a"){
+    freopen((io+".in").c_str(),"r",stdin) ;
+    freopen((io+".out").c_str(),"w",stdout) ;
+}
+
+int main(){
+    //setIO() ; 
+    ll n , q ; cin >> n >> q ;
+    vll a(n) ; for(auto &e:a) cin >> e ; 
+    while(q--){
+        ll d; cin >> d ; 
+        deque<ll> dq ;
+        for(ll i=0;i<d;i++) {
+            while(!dq.empty() and dq.back()<a[i]) dq.pop_back() ;
+            dq.push_back(a[i]) ;
+        }
+        ll ans = dq.front() ;
+        for(ll i=d;i<n;i++){
+            if (dq.front()==a[i-d]) dq.pop_front() ;
+            while(!dq.empty() and dq.back()<a[i]) dq.pop_back() ;
+            dq.push_back(a[i]) ;
+            ans = min(ans,dq.front()) ;
+        }
+        cout << ans << ln ;
+    }
+    return 0 ;
+}
+
+

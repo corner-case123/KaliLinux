@@ -1,0 +1,9 @@
+
+
+method 1 -> printing stuff 
+	-> specially in NT or Math type problems , simply printing stuff can lead to getting observations
+method 2 -> perspective change 
+	-> trying to reach a soln. in one perspective might not always get to a soln ,we have to look at it from many perspective
+		-> for ex : find sm of = f(Ai+Aj)/ for each pair of (i,j) , where  f(x) = x/(2^k) and f(x) % 2^k == 0 and f(x) % 2^(k+1) != 0   
+		-> instead of going for each pair (too slow) ,we can group (Ai+Aj) such that : (Ai+Aj) % 2^(k) == 0 
+		-> from that we can easily get to the answer

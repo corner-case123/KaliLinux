@@ -1,0 +1,15 @@
+
+-> n <= 1e6 and  m <= 1e9
+-> as per the problem , we need to shoot the gun least number of times 
+	-> we can uniquely identify each shot as (x,y) [where x and y are co-prime]
+	-> now the problem is to find for each i [1:n] find the count of numbers which are co-prime with i
+	-> for each 'i' again we can use the extended_set_theory to get all the combination 
+	-> add when the number of primes are odd , and subtract when the number of prime is even 
+	-> for ex : if i = p1 * p2 , then count of number with which it is co-prime is : + m/p1 + m/p2 - m/(p1*p2)
+	
+-> the problem is we only have a working soln , but still it is slow 
+-> first we can store the prime factors for each i [1:1e6] (we only need count)
+-> then for each i [1:1e6] we generate all the combination [set-theory] using the primes 
+	-> if  count of prime is odd , then add m/k  else subtract m/k (k is multiplication of the considered primes)
+	-> now we will see k , total n/k  times (for ex: 6 = 2*3 , k(11)= 6(2*3) ; 12 = (2^2) * 3 , k(11) = 6(2*3) )
+	-> so we can cross all the multiples of k ; to save time  and add(or subtract) n/k * m/k (for each combination of k)

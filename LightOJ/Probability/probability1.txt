@@ -1,0 +1,50 @@
+						****************** probability is recursion ******************
+*** the courtesy goes to shafayet's planet ***
+-> probability and expected value is basically formula based recursion :)
+	-> it is not math , because each event is independent and does not depend or effect the other event
+	-> so we can consider each event as a recursive call 
+	-> they key job is to form a proper recursive formula 
+	
+-> problem 1 : in a coin toss prob. of head is p(h) and prob. tail is p(t) and p(h) + p(t) = 1 
+	now find the number of toss needed to get a tail
+
+-> soln : lets say the number of toss needed is "E" 
+	-> when we throw a coin if it is head then job is done
+	-> or if it's tail , we have wasted a toss and start over 
+	-> final eq : E = p(h) * (1)  + p(t) * (1+E) ; 
+
+-> problem 2 : in a coin toss prob. of head = p(h) ,prob. of tail = p(t) and p(h) + p(t) = 1
+		find the num of toss needed to get two heads in a row
+-> soln :
+	-> lets say the number of toss needed is E
+	-> time for the recursive formula 
+	-> first toss is a head (1 toss is made)
+		-> second toss is tail, failed start over 
+		-> or second toss is head too ! job done 
+	-> or first  toss is tail (1 toss is made)
+		-> failed , start over again
+	-> formula is : E = p(h) * [1+p(h)*1+p(t)*(1+E)] + p(t)*(1+E)
+	
+-> problem 3 :	how many heads would you get after n coin toss  ? and p(h) = p(t) = .5
+
+-> soln :
+	-> even though the soln is very simple , we still gonna solve it using recursion 
+	-> lets say Ci is total number of heads we get if we toss it "i" times
+		-> Ci = p(h) * (1+Ci-1) + p(t) * (Ci-1) ; [if i==0 return 0]
+		-> Ci = p(h) + (p(h)+p(t)) * Ci-1 ;
+		-> Ci  = p(h) + Ci-1  ;
+		-> we can simple write it Ci = p(h) * i  -> Cn = n*p(h) 
+		
+-> problem 4 : find the number of coin toss needed to get n heads in a row  ? 
+	-> each toss is independent 
+	-> lets say the number of toss needed to get n heads in a row is En
+	-> there are only two cases
+		-> get head in the n-th toss 
+			-> a toss spent but job done
+		-> get tail in the n-th toss
+			-> a toss wasted and start over 
+	-> formula : En = p(h) * (1+En-1) + p(t) * (1+En) [if n==0 return 0]
+	
+-> so , we have already got the idea that prob. and expected value is simply recursion 
+-> we also know with recursion comes dp , in many cases we have to store values as well
+-> the LOJ prob. problems will provide strong understanding of recursive formula and dp 

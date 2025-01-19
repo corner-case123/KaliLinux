@@ -1,0 +1,12 @@
+
+
+-> we have to find the smallest value for which t*(c-t*n) is max 
+-> lets first print the values for a seq of  t , we observe that it forms curve (BS applicable)
+	-> now what can be the lower and upper bound of our BS ?
+	-> lower bound = 0 [given] , now what about upper-bound ?
+	-> it is seen that at some point t*(c-t*n) starts giving -ve numbers
+	-> and we dont have to consider them   t *(c-t*n) > 0  or, c-t*n > 0  or,  t < c/n
+	-> so upper bound = c/n [from eqn]
+	
+-> note we cannot have upper bound = 1e18 or any large value 
+-> because there are other large value of  't' for which we can get the same max answer

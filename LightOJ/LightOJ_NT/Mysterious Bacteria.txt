@@ -1,0 +1,13 @@
+
+
+-> there is a value x : 2 <= abs(x) < 2^32 (x can be negative)
+	-> we have to find the largest p where x = b^p 
+
+-> lets first only consider the positive x 
+-> using prime factorization : x = p1 ^ (a1*p) * p2 ^ (a2*p) * ..
+	->  basically , the largest valid p  is gcd of power of all the primes (p1,p2,p3..)
+-> now , what will change if x is -ve ?
+	-> the answer is p cannot be a even number , since any number -b with even power is a +ve number(we dont get -ve x)
+	-> how to  fix this ?
+	-> just remove all the 2's from the gcd , that we calculated for positive x
+

@@ -5,7 +5,7 @@
 	-> here d can only be one of the divisors of d 
 	-> for ex : for n=12 , d = {1,2,3,4,6,12}
 -> i = k*d  -> gcd(i,n) = gcd(k*d,n) = d -> gcd(k,n/d) = 1 
--> now the most imporant part : what does gcd(k,n/d) = 1 say to us
+-> now the most important part : what does gcd(k,n/d) = 1 say to us
 -> it says if we want two number i and n such that i <= n and gcd(i,n)  =  d ;
 	-> we have to build them from co-prime numbers such that gcd(k,n/d) =  1
 	-> otherwise their gcd wont be exactly d 

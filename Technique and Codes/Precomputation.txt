@@ -1,0 +1,6 @@
+
+
+-> sometimes  n <= 1e8 , here we cannot store upto 1e8  but we can iterate upto 1e8
+-> since t <= 1e5 , we can only store the values that are asked in the test case 
+	-> we first take input n for all the test cases 
+	-> then we procompute and only store those values asked in the test-cases to save space

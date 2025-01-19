@@ -1,0 +1,25 @@
+
+
+-> soln tags :
+
+1) observation : 3
+2) logical analysis of problem +  claim/hypothesis/deduction : 14
+3) dry-run many cases and look at the data from diff. angle : 1 
+4) solve the problem for simpler cases and then solve the actual problem : 3
+5) simplify/modify the problem : 2 
+6) bold claim/intuitive claim (without proof): 2
+7) lets say i have a soln &&  what characteristics would it have / working from soln / working backwards : 2
+8) similar to past problems : 2
+
+tips :
+1) sometimes make  some claim like : this loop will not run for long 
+
+issues :
+
+1)   implementation issue : 3
+2) case handling  && not handling all the cases :
+3) wrong claim : 2
+3) improve observation skill :
+4) did not make bold claims : 1 
+5) too slow : 2 
+6) give up too early : 1

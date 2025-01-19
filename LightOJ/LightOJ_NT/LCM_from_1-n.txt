@@ -1,0 +1,23 @@
+
+-> find lcm from 1 to n
+-> t<= 1e4 ,  2 <=n <= 1e8 
+	-> the complexity hints we should try to do something in sqrt(n) for each test-case 
+-> we know , lcm(a,b) = a*b/gcd(a,b) 
+	-> we cannot use it because n is very high and we dont have enough memory to precompute it
+-> now the second formula -> lcm = p1^a1  * p2 ^ a2 * p3 ^ a3 * ..
+	-> this formula says from (1,2,3...n) there is a number which will contribute p^a1 to final LCM
+	
+-> approach 1 :
+	-> p1 ^ a1 <= n (simple but cool)
+	-> using this , for each prime p , we can find the max a (p^a<=n)
+	-> still its slow , there are k<= 6e6 primes, final O(t*k*log(n)) wont pass  
+
+-> approach 2 :	
+-> can we apply something like sqrt(k) here , yes ! 
+	-> for any prime > sqrt(n) will appear only once in the final LCM 
+	-> for any prime <= sqrt(n) can appear many times , [ we have got sqrt(n)! ]
+	
+	
+-> there was another way to find approach 2 , consider a small n  : then find the prime factorization for LCM 
+	-> the pattern of a in p^a should be visible 
+

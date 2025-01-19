@@ -1,0 +1,10 @@
+
+
+-> for 23 people the probability of finding same birthday for two persons >50%
+-> lets see how to analyze this system :
+	-> we can first calculate the probability of all persons having distinct birthdays 
+	-> for the first person total days = 365 , valid days = 365
+	-> for the second person total days = 365 , valid days = 364
+	-> for the third person total days = 365 , valid days = 363 
+	-> so final probability for all n persons having distinct birthday is : P" =  mul(i=0:i=n-1) 365-i/365 
+	-> the probability of two persons having the same birthday is P  = 1 - p"

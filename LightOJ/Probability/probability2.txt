@@ -1,0 +1,35 @@
+						****************** probability is recursion ******************
+*** probability is a special type of recursion , where after state transition / (a choice that we take) , we can end up in the same state 
+
+	-> lets say  E is the prob of getting two heads in a row (p(h)+p(t)=1)
+	-> toss 1 : head 	
+		-> toss 2 : tail , start over !!!
+		-> toss 2 : head ,  job done 
+	-> toss 1 : tail (failed start over) !!!
+	
+	-> final formula : E = p(h) * [1+ p(t)*(1+E) + p(h)*(1) ] + p(t) * [1+E] ;
+	-> we can see that , after some state transition we can end up in the same state (ie : E)
+	-> in these cases,we have bring all the co-eff of E to the left side and then divide both side by that
+	
+***** lets look at a more conceptual problem on probability -> https://lightoj.com/problem/island-of-survival
+
+-> here basically there are 5 events , of which 4 allows me to live , and one(tiger and person) kills me 
+-> as for the person-deer case , I can either let it live or kill it , I will choose which options gives me more prob. of survival
+-> each dp state is defined by dp[t][d] where t = number of tigers , d = number of deers
+-> lets analyze all the cases
+	-> case 1 : deer-deer (nothing happens state doesn't change)
+	-> case 2 : tiger-deer (1 deer dies)
+	-> case 3 : tiger-tiger (2 tigers die)
+	-> case 4 : person-deer (take max of two cases , one where i dont kill the deer and another where i kill it)
+	-> case 5 : person_tiger (we dont have to consider it , since the prob. of survival is zero by default)
+	
+-> now two main case (save deer and  kill deer)
+	-> save_deer = prob_TigerTiger * dp[t-2][d] + prob_TigerDeer * dp[t][d-1] + prob_DeerDeer * dp[t][d] + prob_PersonDeer * dp[t][d] 
+	-> save_deer * (1- prob_DeerDeer - prob_PersonDeer) = prob_TigerTiger * dp[t-2][d] + prob_TigerDeer * dp[t][d-1] 
+	-> save_deer = ( prob_TigerTiger * dp[t-2][d] + prob_TigerDeer * dp[t][d-1] ) / (1- prob_DeerDeer - prob_PersonDeer)
+	
+-> kill_deer = prob_TigerTiger * dp[t-2][d] + prob_TigerDeer * dp[t][d-1] + prob_DeerDeer * dp[t][d] + prob_PersonDeer * dp[t][d-1] 
+-> kill_deer * (1-prob_DeerDeer) =  prob_TigerTiger * dp[t-2][d] + prob_TigerDeer * dp[t][d-1]  + prob_PersonDeer * dp[t][d-1] 
+-> kill_deer = ( prob_TigerTiger * dp[t-2][d] + prob_TigerDeer * dp[t][d-1]  + prob_PersonDeer * dp[t][d-1] )  / (1-prob_DeerDeer) 
+
+return max(save_deer,kill_deer) ;

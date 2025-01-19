@@ -1,0 +1,15 @@
+
+
+-> for a given n , find all pairs of i <= j , such that lcm(i,j) = n 
+-> we can use primes factorization -> n = p1^a1 * p2^a2 * ..
+-> for lcm(i,j) = n , at least one of i and j should have a1(for p1) ,at least one of i and j should have  a2(for p2) and so on
+-> now it seems like a combination problem
+	-> for each power a ,we have three choices :
+		-> give max power a only to i , and give any other power [0:a-1] to j (aC1 or a ways) 
+		-> give max power a only to j , and give any other power [0:a-1] to i (aC1 or a ways)
+		-> give max power to both i and j (only 1 way)
+-> so we start with ans = 1 , for each prime power a , we do ans *= (2*a+1)
+-> finally we do ans = ans/2 + 1 (because each pair(i,j) will come twice) (+1 is done to include the pair {n,n} which appears only once)
+
+
+

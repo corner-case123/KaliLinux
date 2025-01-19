@@ -1,0 +1,12 @@
+
+-> it says if number of pigeon is more than pigeon_hole then -> one hole must have more than one pigeon
+	-> this simple principle says that -> when repitition will come 
+	-> it allows us to reduce range of search and write some higher complexity code with proper break condition 
+
+example problem : Again Array Queries [LOJ]
+	-> this problem had n <= 1e5 and q<= 1e4 and 1 <= elements <= 1e3 
+	-> we cannot do (n*q) but can do (max(elements)*q)
+	-> actually we can just consider 10^3 elements for each query
+	-> lets say we consider only 1000 elements :
+		-> if all of them are distinct , then we simply have all the elements that we can get [1<=element<=1e3]
+		-> if any element repeats , we already  get the minimum_difference = 0  

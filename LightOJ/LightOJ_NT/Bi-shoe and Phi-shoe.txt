@@ -1,0 +1,9 @@
+
+
+-> find the smallest i for  x such that phi(i) >= x 
+Approach 1 :
+	-> we can calculate and store all the phi values and the smallest number for that phi value
+	-> problem is  total distinct phi values are <= 2e5 , so it will get TLE
+-> for each phi value lets write the smallest number that makes that phi
+	-> we can observe that , for each phi , the smallest number that makes that phi is the next larger prime number 
+

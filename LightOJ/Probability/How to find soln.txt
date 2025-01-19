@@ -1,0 +1,20 @@
+
+
+1) How to read problem statement
+	-> try to simply/modify the problem
+	-> try to spot any observation
+	-> for starters write the modified or simplified problem-statement
+	->
+
+2) How to come up with soln
+	-> recall for similar problems that you know 
+	-> if you dont get the soln idea .. try to solve for a simpler case and then generalize it for the actual problem
+	-> dont be shy to make bold claims/hypethesis , after that try to prove it or at least try to find some counter example
+	-> try to connect to the problem
+	-> run through all the techniques and algo you know and see if anything fits into this problem
+	-> print things and see if you can find any pattern (i solved many NT problem just by doing this)
+	
+3) How to come up with soln 
+	-> assume you do have a hypothetical soln , now try to find the characteristics/observation of that hypothetical soln
+		-> this is called working backwards 
+	-> you can also play with the soln. to find out something important

@@ -1,0 +1,10 @@
+
+
+->first lets talk about basic set theory -> AUBUC=A+B+C-A∩B-A∩C-B∩C+A∩B∩C 
+	-> now this theory is applicable only for 3 elements , what if there are many elements
+	-> actually we can generalize this formula as inclusion-exclusion principle (IEP)
+	-> the observation is  add when when we have taken odd elements , and subtract when there are even elements
+	-> for getting we can use the bit-representation trick that we use for subset generation (1 to 2^n-1)
+	
+-> helping cicada was based on this extended set theory idea 
+-> the key take-way in this formula was observing that , we can add and subtract based on the parity !!!!

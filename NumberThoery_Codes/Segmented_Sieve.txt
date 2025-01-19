@@ -1,0 +1,22 @@
+
+
+-> code of segmented sieve , NOTE : dont use map or set , if you can use simple array , they have significant overhead 
+	-> time with map/set -> 1700 ms , time with  vector<ll> -> 500 ms , time with vector<bool>/bool arr -> 100 ms 
+
+vll primes  ;
+
+void solve(){
+	ll a ,  b ; cin >> a >> b ; 
+	ll sz = b-a+1 ;
+	vector<bool> mark(sz,false) ; 
+	for(auto &e:primes){
+		if (e*e>b) break ;
+		for(ll i=(a+e-1)/e;i<=b/e;i++){
+			if (i >  1) mark[e*i-a] = true ;  
+		}
+	}
+	ll ct = 0 ; 
+	for(ll i=0;i<sz;i++) if (mark[i]== false and (a+i)>1) ct++ ;
+	cout << ct << ln ;
+	return ;
+}
