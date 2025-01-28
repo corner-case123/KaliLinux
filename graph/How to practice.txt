@@ -1,0 +1,73 @@
+
+FAQ : by UM_NIK 
+	-> just solve fucking problems 
+	
+My opinion on how to practice competitive programming : 
+	-> cp must be a part of life (not just a weekly practice event)
+	-> solve the problems that challenges you (dont solve the easiest ones)
+	-> doing cp should be satisfying and appealing 
+	-> consider solving a particular problem to be a huge success and not solving it to be a huge failure
+	
+Self-deception: maybe why you're still grey after practicing every day
+	-> while solving a problem , devote yourself to it , dont just make half-assed attempts and read the editorial later 
+	-> solve with the attitude you are never gonna read the editorial
+	-> solve problems that helps you learn and grow , and not just increase the solve-count
+
+How to practice Competitive Programming [Um_nik version]
+	-> every person , has a range of problems which are not very easy and not very hard (with enough effort they can solve it )
+		-> only solve them 
+	-> solving problems and solving them fast are two different things
+	-> in contest , we have limited time and so we can only solve the problems that we are familiar with (not something totally new)
+	-> to solve fast , we should participate in contest 
+	-> to learn how to solve , we should solve archive (like : CF , timus , UVa,SPOJ), where we are not bounded by time
+		-> some tips :
+			-> sort the archive as per difficulty
+			-> open many problems together , read them and solve the ones that you think you can solve 
+			-> dont look at the editorial if you cant solve it , return to it after like a month 
+			-> after returning to the unsolved problem many times , you will most likely get the soln
+	-> "the main issue is not,you dont know the technique rather you have not tried hard enough"
+	-> a problem , that you could not solve 2 months ago , but now you can , indicates  improvement
+
+[Tutorial] A way to Practice Competitive Programming : From Rating 1000 to 2400+
+	-> use 3 or more sited for practice (CF,ATC,...)
+	-> topcoder is good for math-heavy problems 
+	-> (most suggestions are backdated)
+	
+[Tutorial] How to learn better, and what most people don't get about learning
+	-> very large blog (read later)
+
+Pro Tips — get them while they are free
+	-> focus on solving problems , not the rating . better to get -delta while solving everything you could ,rather than +delta and not solving all
+	-> solve ATCODER .. period
+	-> dont force a particular algo/idea to a problem
+	-> only code when you are convinced your idea is good enough
+	-> problem-setting : dont set problem such that it fits a particular soln , it makes the problem ugly and also make the soln obvious 
+		-> although making problem from soln is a good way to start
+	-> want to solve div2 ABC , upsolve them always to make a habit
+	-> dont look at problem-tags , recognising problems is a very important step
+	-> WRITE YOUR PATH : PROBLEM -> SOLN 
+	-> solve pure math models , it's a huge advantage 
+	-> read blogs 
+	-> only use 1 account , rating and color does not matter 
+	
+How to Effectively Practice CP + Problem Solving Guide
+	-> dont just get fixated on a single idea , actively think of more and more ideas and insights 
+	-> solve recent problems more , recent CF problems provide a huge amount of new ideas
+	-> to improve fast , learn as many as new concepts possible in a short time
+	-> if your are hard-stuck on a problem and cant move , read editorial
+		-> if you find the soln (editorial) easy , then it means you did not try hard enough
+	-> put alot of effort in thinking and dont be lazy (dependent on editorial)
+	-> implement the soln after finding it 
+	-> practice problems in a rating-range that challenges you 
+	-> make your practice time-bound , it will make you faster 
+	-> build up a system for solving problems , how did i come up with the soln , how can i use this to solve other problems
+		-> note : i am also categorizing soln , to build a system of soln 
+	-> read others code , improve your implementation 
+	->  dont focus on algo , if you come across one which you dont know , only then you should learn it 
+		-> if the algo is important , it will appear more often and you dont need to practice by TAGS
+	-> dont solve  by problem-tags 
+	-> give more virtual contests 
+	-> you are not guessing enough , with the observation you got ,build a habit of guessing and then verifying it
+	-> one step at a time and be obsessed with what you want 
+	
+

@@ -1,0 +1,38 @@
+#include <bits/stdc++.h>
+#include <ext/pb_ds/assoc_container.hpp>
+#include <ext/pb_ds/tree_policy.hpp>
+using namespace __gnu_pbds;
+typedef tree<int, null_type, std::less<int>, rb_tree_tag, tree_order_statistics_node_update> indexed_set;
+#define ln '\n'
+#define ull unsigned  long long
+#define ll long long 
+#define vll vector<ll>
+#define pll pair<ll, ll>
+#define ff first
+#define vpll vector<pair<ll,ll>>
+#define pii pair<int,int> b
+#define ld long double
+#define ss second
+using namespace std;
+
+
+void setIO(const string io="a"){
+    freopen((io+".in").c_str(),"r",stdin) ;
+    freopen((io+".out").c_str(),"w",stdout) ;
+}
+void solve(){
+	
+	return ; 
+}
+int main() {
+    ios_base::sync_with_stdio(false);
+	cin.tie(NULL);
+	setIO() ;
+	ll t = 1 ; 
+	cin >> t ;
+	for(ll i=1;i<=t;i++){
+		//cout << "Case " << i << ": " ;
+		solve() ;
+	}
+    return 0;
+}

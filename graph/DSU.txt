@@ -1,0 +1,53 @@
+class DSU {
+private:
+    vector<ll> parent; // Stores the parent of each node
+    vector<ll> size;   // Stores the size of the set for union by size
+
+public:
+    // Constructor: Initializes DSU with n elements (0 to n-1)
+    DSU(ll n) {
+        parent.resize(n);
+        size.resize(n, 1); // Initially, each set has size 1
+        for (ll i = 0; i < n; i++) {
+            parent[i] = i; // Each element is its own parent
+        }
+    }
+
+    // Find function with path compression
+    ll find(ll x) {
+        if (x != parent[x]) {
+            parent[x] = find(parent[x]); // Path compression
+        }
+        return parent[x];
+    }
+
+    // Union function with union by size
+    bool unite(ll a, ll b) {
+        ll rootA = find(a);
+        ll rootB = find(b);
+
+        if (rootA == rootB) {
+            return false; // a and b are already in the same set
+        }
+
+        // Union by size: attach the smaller tree under the larger tree
+        if (size[rootA] < size[rootB]) {
+            swap(rootA, rootB);
+        }
+
+        parent[rootB] = rootA;
+        size[rootA] += size[rootB];
+        return true;
+    }
+
+    // Function to check if two elements are in the same set
+    bool isConnected(ll a, ll b) {
+        return find(a) == find(b);
+    }
+
+    // Function to get the size of the set containing element x
+    ll getSetSize(ll x) {
+        return size[find(x)];
+    }
+};
+

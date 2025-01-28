@@ -1,10 +1,13 @@
 
-
+				***** SOLVE PURE MATH PROBLEMS ***** MATH IS THE MOTHER OF LOGIC *****
 1) How to read problem statement
 	-> try to simply/modify the problem
 	-> try to spot any observation
 	-> for starters write the modified or simplified problem-statement
-	->
+	-> why a particular constraint or condition is there , how does it affect the problem 
+	-> is there some unusual constraint or condition , look into it 
+	-> if you get WA , don debug and stress-test
+	-> after solving the problem : note what went wrong , what should you improve
 
 2) How to come up with soln
 	-> recall for similar problems that you know 
@@ -18,3 +21,22 @@
 	-> assume you do have a hypothetical soln , now try to find the characteristics/observation of that hypothetical soln
 		-> this is called working backwards 
 	-> you can also play with the soln. to find out something important
+	
+4) how to find soln :
+	-> think in terms of binary format(bit representation or halving ) , graph or geometric co-ordinates 
+	-> think about how to reuse the info that i know ( eg:dp,two pointers,sweepline ) 
+	-> combine smaller problems/sub-problems to get the soln (eg:dp,mitm,D&Q)
+	-> how i can make one choice and get to the same problem again (eg : dp state ,greedy)
+	-> ask "what do i know for sure"
+	-> try to compress/shorten (eg: reduce dp state) , reduce to only the things that matters
+		-> what is the minimum needed for a condition to be true 
+	-> MATH : WRITE EQN AND FORMULA FOR EVERYTHING YOU CAN , AND ALSO WRITE THEM IN ALL THE POSSIBLE FORMAT 
+		-> this will give you the formula or eqn to get the soln 
+	->  visualize and draw 
+	-> look for specific property : like : monotonicity (eg:BS) and concavity 
+	-> dry-run testcases by hand 
+	-> dont rethink the same idea twice , try to come up with more and more new ideas and note them down
+		-> eventually they will combine and give the soln
+	-> restate the problems in as many different ways as possible , this will give you more perspective to think about 
+	-> break down problem into sub-problem , solve the independently and combine them 
+	-> notice what changes with each operation and what remains same 

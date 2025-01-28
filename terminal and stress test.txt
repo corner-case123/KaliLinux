@@ -1,0 +1,31 @@
+
+-> to compile and run a code 
+	-> using "cd" go to the folder with .cpp file 
+	-> compile : g++ test.cpp -o test
+	-> run : ./test 
+	-> to read i/p from a file : ./test < input.txt
+	-> to write o/p to a file : ./test > output.txt
+	-> combine them : ./test < input.txt > output.txt (they must be in the same folder)
+
+-> write a random test-case generator for stress-test
+	-> you can adjust the parameters value from script file 
+-> write a brute-force naive soln. that you know works for sure 
+-> write a script file 
+	-> before running give permission with : chmod +x script.sh
+	-> that will run your-main code and save the output in  a output file
+	-> it will also run the naive-soln (correct) and also save the  output in a  answer file
+	-> then it will compare output and answer file , in case it finds any miss match
+		-> it will print that case and exit 
+		
+-> sample testing result 
+1
+1c1
+< 6
+---
+> 22
+
+-> first line is the test-case number
+-> second line means line 1 of output differs from  line 1 in answer
+->  < 6 , means the output is  6 
+-> >22 , means the correct soln is 22 
+
