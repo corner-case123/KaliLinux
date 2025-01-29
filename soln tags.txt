@@ -2,13 +2,13 @@
 
 -> soln tags :
 
-1) observation : 8
-2) logical analysis of problem +  claim/hypothesis/deduction : 18
-3) dry-run many cases and look at the findings/problem from diff. angle : 3
+1) observation : 9
+2) logical analysis of problem +  claim/hypothesis/deduction : 20
+3) dry-run test cases and look at the findings/problem from diff. angle : 5
 4) solve the problem for simpler cases and then solve the actual problem : 3
 5) simplify/modify the problem : 3
 6) bold claim/intuitive claim (without proof): 3
-7) lets say i have a soln &&  what characteristics would it have / working from soln / working backwards : 4
+7) lets say i have a soln &&  what characteristics would it have / working from soln / working backwards : 5
 8) similar to past problems : 3
 9) formulate the problem-statement : 1 
 10) solid knowledge/theory : 1 
