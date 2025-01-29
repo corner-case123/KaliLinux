@@ -2,8 +2,8 @@
 
 -> soln tags :
 
-1) observation : 9
-2) logical analysis of problem +  claim/hypothesis/deduction : 20
+1) observation : 10
+2) logical analysis of problem +  claim/hypothesis/deduction : 21
 3) dry-run test cases and look at the findings/problem from diff. angle : 5
 4) solve the problem for simpler cases and then solve the actual problem : 3
 5) simplify/modify the problem : 3
