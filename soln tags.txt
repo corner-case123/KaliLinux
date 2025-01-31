@@ -12,13 +12,13 @@
 8) similar to past problems : 7
 9) formulate the problem-statement / make a proper structure from the statement  : 2
 10) solid knowledge/theory : 1 
-11) solving by sub-problems/components : 3
+11) solving by sub-problems/components/different cases(for n%2==0 soln1 and n%2==1 soln2) : 4
 12) soln design using DS : 1 
 ## think in a dp manner -> how we transition from one state (choice) to another
   -> this also helps to find proof 
 ## look at the constraints , conditions and sample cases
   -> can you find any soln idea or observation from sample :  1
-  -> do you see any special constraint or condition that can provide  hint or give  idea : 1
+  -> do you see any special constraint or condition that can provide  hint or give  idea : 2
 
 
 tips :
