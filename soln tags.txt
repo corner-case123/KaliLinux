@@ -10,13 +10,13 @@
 6) bold claim/intuitive claim (without proof): 3
 7) lets say i have a soln &&  what characteristics would it have / working from soln / working backwards : 7
 8) similar to past problems : 7
-9) formulate the problem-statement : 1
+9) formulate the problem-statement / make a proper structure from the statement  : 2
 10) solid knowledge/theory : 1 
 11) solving by sub-problems/components : 3
 12) soln design using DS : 1 
 ## look at the constraints , conditions and sample cases
   -> can you find any soln idea or observation from sample
-  -> do you see any special constraint or condition that can provide  hint or give  idea
+  -> do you see any special constraint or condition that can provide  hint or give  idea : 1
 
 
 tips :
