@@ -2,8 +2,8 @@
 
 -> soln tags :
 
-1) observation : 10
-2) logical analysis of problem +  claim/hypothesis/deduction : 30
+1) observation : 11
+2) logical analysis of problem +  claim/hypothesis/deduction : 31
 3) dry-run test cases and look at the findings/problem from diff. angle : 9
 4) solve the problem for simpler cases and then solve the actual problem : 4
 5) simplify/modify the problem : 6
@@ -17,7 +17,7 @@
 ## think in a dp manner -> how we transition from one state (choice) to another
   -> this also helps to find proof 
 ## look at the constraints , conditions and sample cases
-  -> can you find any soln idea or observation from sample
+  -> can you find any soln idea or observation from sample :  1
   -> do you see any special constraint or condition that can provide  hint or give  idea : 1
 
 
