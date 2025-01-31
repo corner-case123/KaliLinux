@@ -1,7 +1,7 @@
 -> MODULAR EXPONENTIATION :
 
 CODE : time -> O(log(b)) , space -> O(1) 
-
+## a % b  is closely related to their binary representation 
 [CODE]
 ll modularExponentiation(ll a, ll b, ll m) {   // Function to compute (a ^ b) % m efficiently
     ll result = 1;
