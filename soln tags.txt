@@ -3,10 +3,10 @@
 -> soln tags :
 
 1) observation : 11
-2) logical analysis of problem +  claim/hypothesis/deduction : 31
-3) dry-run test cases and look at the findings/problem from diff. angle : 9
+2) logical analysis of problem +  claim/hypothesis/deduction : 35
+3) dry-run some cases and look at the findings/problem from diff. angle : 11
 4) solve the problem for simpler cases and then solve the actual problem : 4
-5) simplify/modify the problem : 6
+5) simplify/modify the problem : 7
 6) bold claim/intuitive claim (without proof): 3
 7) lets say i have a soln &&  what characteristics would it have / working from soln / working backwards : 7
 8) similar to past problems : 7
@@ -19,6 +19,7 @@
 ## look at the constraints , conditions and sample cases
   -> can you find any soln idea or observation from sample :  1
   -> do you see any special constraint or condition that can provide  hint or give  idea : 2
+## check if it has a monotonic property or not : 1 
 
 
 tips :
@@ -32,8 +33,9 @@ issues :
 
 1)  implementation issue : 4
 2) not handling all the cases / missing cases : 3
-3) wrong claim / incorrect-analysis : 4
+3) wrong claim / incorrect-analysis : 6
 3) improve observation skill :
 4) did not make bold claims : 1 
-5) too slow : 10
+5) too slow / poor attention and focus  : 13
 6) give up too early : 1
+7) correct idea but wrong way of implementation : 1 
