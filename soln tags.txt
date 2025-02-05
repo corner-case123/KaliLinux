@@ -4,7 +4,7 @@
 
 1) observation : 11
 2) logical analysis of problem +  claim/hypothesis/deduction : 38
-3) dry-run some cases and look at the findings/problem from diff. angle : 11
+3) dry-run some cases and look at the findings/problem from diff. angle : 12
 4) solve the problem for simpler cases and then solve the actual problem : 5
 5) simplify/modify the problem : 7
 6) bold claim/intuitive claim (without proof): 4
