@@ -3,8 +3,8 @@
 -> soln tags :
 
 1) observation : 11
-2) logical analysis of problem +  claim/hypothesis/deduction : 38
-3) dry-run some cases and look at the findings/problem from diff. angle : 12
+2) logical analysis of problem +  claim/hypothesis/deduction : 39
+3) dry-run some cases and look at the findings/problem from diff. angle : 13
 4) solve the problem for simpler cases and then solve the actual problem : 5
 5) simplify/modify the problem : 7
 6) bold claim/intuitive claim (without proof): 4
@@ -12,14 +12,14 @@
 8) similar to past problems : 9
 9) formulate the problem-statement / make a proper structure from the statement  : 3
 10) solid knowledge/theory : 2
-11) solving by sub-problems/components/different cases(for n%2==0 soln1 and n%2==1 soln2) : 7
+11) solving by sub-problems/components/different cases(for n%2==0 soln1 and n%2==1 soln2) : 8
 12) soln design using DS : 1 
 ## think in a dp manner -> how we transition from one state (choice) to another
   -> this also helps to find proof 
 ## look at the constraints , conditions and sample cases
   -> can you find any soln idea or observation from sample :  1
   -> do you see any special constraint or condition that can provide  hint or give  idea : 2
-## check if it has a monotonic property or not : 4
+## check if it has a monotonic property or not : 6
 ## deal with the problems first  :  3
   ->lets say i have to minimise some cost 
   -> for this , check which entities affects my minimum cost the most
