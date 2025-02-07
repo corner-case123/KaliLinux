@@ -3,7 +3,7 @@
 -> soln tags :
 
 1) observation : 11
-2) logical analysis of problem +  claim/hypothesis/deduction : 39
+2) logical analysis of problem +  claim/hypothesis/deduction : 42
 3) dry-run some cases and look at the findings/problem from diff. angle : 13
 4) solve the problem for simpler cases and then solve the actual problem : 5
 5) simplify/modify the problem : 7
@@ -18,7 +18,7 @@
   -> this also helps to find proof 
 ## look at the constraints , conditions and sample cases
   -> can you find any soln idea or observation from sample :  1
-  -> do you see any special constraint or condition that can provide  hint or give  idea : 2
+  -> do you see any special constraint or condition that can provide  hint or give  idea : 3
 ## check if it has a monotonic property or not : 6
 ## deal with the problems first  :  3
   ->lets say i have to minimise some cost 
@@ -40,6 +40,6 @@ issues :
 3) wrong claim / incorrect-analysis : 6
 3) improve observation skill :
 4) did not make bold claims : 1 
-5) too slow / poor attention and focus  : 14
+5) too slow / poor attention and focus  : 15
 6) give up too early : 1
 7) correct idea but wrong way of implementation : 1 
