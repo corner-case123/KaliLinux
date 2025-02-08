@@ -4,8 +4,8 @@
 
 1) observation : 11
   -> print things and find pattern : 1 
-2) logical analysis of problem +  claim/hypothesis/deduction : 43
-3) dry-run some cases and look at the findings/problem from diff. angle : 13
+2) logical analysis of problem +  claim/hypothesis/deduction : 45
+3) dry-run some cases and look at the findings/problem from diff. angle : 14
 4) solve the problem for simpler cases and then solve the actual problem : 5
 5) simplify/modify the problem/modify the given equation : 8
 6) bold claim/intuitive claim (without proof): 4
@@ -15,7 +15,7 @@
 10) solid knowledge/theory : 2
 11) solving by sub-problems/components/different cases(for n%2==0 soln1 and n%2==1 soln2) : 9
 12) soln design using DS : 4
-## think in a dp manner -> how we transition from one state (choice) to another :  1
+## think in a dp manner -> how we transition from one state (choice) to another :  3
   -> this also helps to find proof 
 ## look at the constraints , conditions and sample cases
   -> can you find any soln idea or observation from sample :  1
