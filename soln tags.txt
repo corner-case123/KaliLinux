@@ -18,7 +18,7 @@
 ## think in a dp manner -> how we transition from one state (choice) to another :  5
   -> this also helps to find proof 
 ## look at the constraints , conditions and sample cases
-  -> can you find any soln idea or observation from sample :  3
+  -> can you find any soln idea or observation from sample :  4
   -> do you see any special constraint or condition that can provide  hint or give  idea : 3
 ## check if it has a monotonic property or not : 6
 ## deal with the problems first  :  3
