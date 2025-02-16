@@ -1,0 +1,461 @@
+
+Q:: a graph is given and q queries are given also , for each query find whether there exist an edge between (u,v)
+	-> use a dfs , for each component of the graph , mark the entire component with a specifit "root" value
+	-> this "root" value should be diff. for each component
+	-> this way if there is path between (u,v) : they will have the same root
+
+Q:: how to detect cycle ? [undirected graph]
+
+** before we answer that question we can discuss about tree **
+
+TREE : tree are graph without cycle and have one component , if it has multiple component , then it is called forest 
+	-> one important property of tree is if we dont have to maintain a visited array for a tree
+	-> if we dont revisit the parent of a node , we are fine 
+	-> if we remove an edge , we get one more component
+	-> if we add a edge , we have  a cycle
+	-> we can also use this idea for simple graph ,
+		-> if a component of a graph has "k" nodes and ( > k-1 ) edges in that component , then there is a cycle 
+	-> using dp and recursion , for each node we can find its max_height and number of nodes in that subtree -> O(n)
+	
+-> to find a cycle [undirected graph ] : if we encounter a already visited node , other than it parent of the node , we have a cycle
+-> also , for a component with c nodes , we have c or more edges , then there is a cycle
+
+BELLMAN-FORD ALGO :
+
+-> shortest path from a source to all the nodes : O(n*m)
+	-> it works for negative edges , but does not work for negative cycle 
+		-> but it can detect negative cycle 
+	-> for this algo we need a edge-list {u,v,weight} 
+	-> now we iterate the edge-list n-1 times , whenever we get a path reduction we update it 
+	-> after n-1 iterations , if we still find a reduction , there is a negative cycle
+		-> otherwise , all the paths are optimized
+	-> we iterate n-1 times , because shortest path from a->b can have at-most n-1 edges 
+	** we can stop , once we dont get a reduction during an iteration 
+	
+	
+SPFA : (son of bellman-ford)
+	-> it is slight optimization of bellman-ford , because naively we naively dont iterate all the nodes 
+	-> we maintain a queue and insert the source node , then we only insert a node into the queue ,
+		-> if we are able to reduce the distance to that node from source 
+	-> note that : we use an adjacency list in spfa , not edge-list
+	** it is still possible to make spfa as slow as bellman-ford 
+	
+
+DIJKSTRA : (weighted bfs)
+	-> it also finds shortest path from a sourse to all other nodes like bellman-ford
+		-> pros : it is much faster than bellman-ford 
+		-> cons : it does not work with negative edges 
+	-> dijkstra can be considered an advanced  bfs (here the edges are weighted)
+	-> it works on two  key principles :
+		-> we use a priority-queue {distance,node} , the node will smaller distance is visited first
+		-> we only consider a node , if it gives smaller distance than already stored in the distance-array
+	
+	
+FLOYD-WARSHALL ALGO : O(n^3)  (very simple algo)
+
+	1. Initialize dist[][] with:
+	   - Edge weights for direct connections
+	   - 0 for dist[i][i] (same node)
+	   - ∞ for unreachable nodes
+
+	2. for k = 1 to n:  // Intermediate node
+		  for i = 1 to n:  // Start node
+			  for j = 1 to n:  // End node
+				  if dist[i][k] + dist[k][j] < dist[i][j]:
+					  dist[i][j] = dist[i][k] + dist[k][j]
+
+	-> pros : it finds shortest distance between any two-nodes , works for negative edge
+	-> cons : only works for smaller graph , fails for negative cycle 
+	
+	
+MORE ABOUT TREE :
+
+	--> FINDING DIAMETER OF A TREE (max len of path between any two nodes) [using dp]
+		-> every node will return its max height to its parent 
+		-> every node will collect all max_height from its chidren 
+			-> and calculate the curr_diameter using two largest mx_height 
+		-> max_diamter = max(max_diamter,curr_diameter) 
+	-->  FINDING DIAMETER OF A TREE (max len of path between any two nodes) (using 2DFS call)
+		-> select a random node a , find the furthest node b from a , using dfs
+		-> then find the furthest node c from b , using another dfs call 
+		-> distance between b and c : is the diameter 
+	** this approach can proven by testing , always works , very sexy
+
+	--> ALL LONGEST PATH (for each node , find the max_len_path that starts with that node)
+		-> we can observe that , the longest path for any node there are 2 cases :
+			1) the path can go through one of its chidren
+			2) the path can go through its parent
+		-> for the first case , we can use dp the same way we did for diameter-problem
+		-> for the second case , once the calculation is done and we are back to root node 
+			-> we will again start another dfs_call , which will send the max_height from another subtree
+			-> this say , for the second dfs-call we know the max_height when parent is in the path
+	
+BINARY TREE :
+	-> it has pre-order , in-order , post-order 
+	-> in order to draw a unique tree , we need the in-order seq. and any other seq. (pre-order or post-order)
+	
+SPANNING TREE :
+	-> spanning is build from a connected-graph 
+	-> the tree contains all the nodes and no cycle
+	-> "MINIMUM SPANNING TREE" is where the sum of edges of the spanning-tree is smallest 
+	-> same way "MAXIMUM SPANNING TREE" is where the sum of the edges of spanning-tree is largest
+		-> there can be several "MINIMUM" AND "MAXIMUM" spanning-tree . 
+		
+KRUSKALS-ALGO FOR MINIMUM and MAXIMUM SPANNING TREE :    O(ElogE)
+	-> it is based on DSU 
+	-> use and edge-list {u,v,weight} and sort it in ascending-order of the weight 
+	-> iterate of the list , and for each edge only add it to the tree if it doesnot form a cycle
+	-> to check if it forms a cycle or not , we will use DSU concept 
+	-> when we have added n-1 edges , we know that the tree is complete 
+	** note for the MAXIMUM spanning tree , we can simply sort the tree is descending order 
+	
+PROOF OF KRUSKALS ALGO :
+	-> we know that kruskals algo gives a valid spanning tree , but we will prove that it's MINIMUM too 
+	-> lets says T' is the MST , and using the kruskals-algo we have T 
+	-> lets assume there is a  minimum edge "e" , which is in T , but not in T'
+	-> now we add "e" in T' and remove another edge from T' (heavier than "e")
+		[note : adding "e" will form a cycle,and remove a heavier edge to remove the cycle]
+		-> this will still keep it spanning tree , because we can always remove an edge from cycle
+	-> we can repeat this argument for all the minimum edge "e" , that are in T , but not in T'
+	
+PRIMS ALGO for finding MINIMUM and MAXIMUM SPANNING TREE :
+	-> it is variation of DIJKSTRA (uses priority-queue)
+	-> the idea is very interesting , we have two array smallest[] and connected[]
+		-> connected[u] says whether we have already connected "u" with another node "v" (parent of "u")
+		-> the smallest[u] says , smallest weight required to connect "u" with any other node "v" (parent of "u")
+		-> this is because in a tree , every node has a parent 
+			-> so once we find a parent for a node we are done for that node 
+	-> first we push any node into  pq {weight,node}
+	-> if we already visited the node , we ignore it 
+		-> else , we do mst_weight += weight and  connected[node] = 1 
+	-> then we go through all of its children  
+		-> if the children is not connected and weight < smallest[v]
+			-> we push {weight,child} into pq
+** note that both PRIMS and KRUSKALS do the same thing 
+** note we can also make some modifications to print the edges of MST as well (both for PRIM and KRUSKALS)
+
+
+DIRECTED GRAPH :
+	--> TOP SORT (only works for DAG)
+	-> if there is a path from a to b , then "a" appears before "b" , in the sorting 
+		1) DFS METHOD 
+		2) KAHN-ALGO (sexy one)
+	
+	
+--> DFS METHOD :
+								   1 → 2 → 3
+								   ↓   ↓
+								   4 → 5 → 6
+	-> we keep a visited array , for each unvisited node , we make  dfs(node) call
+	-> we only print a node , only after printing all of its children in the dfs call
+		-> we do it recursively 
+code : (this works if it is DAG) (it wont work if there is cycle)
+	void topsort(ll node){
+		vis[node] = 1 ;
+		for(auto &ch:g[node]){
+			if (vis[ch]==0) topsort(ch) ;
+		}
+		cout << node <<  " " ; 
+	}
+   
+code 2 : (it can also detect cycle)
+	void topsort(ll node){
+		vis[node] = 1 ; 
+		for(auto &ch:g[node]){
+			if (vis[ch]==1) {
+				cout << "cycle found" << ln ;
+				return ; 
+			}
+			else if (vis[ch]==2) continue ; 
+			topsort(ch) ;
+		}
+		cout << node << " " ; 
+		vis[node] = 2 ; 
+ 	}
+** how did i find it ?  --> just pure example analysis and observation 
+
+
+DP ON DAG :  (we dont need any visited array for DAG) (it will always have linear traversal complexity)
+	(note that : dag needs a visited array else it would get O(n*m) )
+	(for a starting and ending node)
+	 • how many different paths are there?
+	 • what is the shortest/longest path + their count ?
+	 • what is the minimum/maximum number of edges in a path + their count ?
+	 • which nodes certainly appear in any path? (nodes which are part of every path possible)
+	 
+
+--> number of paths between two given nodes (u,v) 
+	
+	ll f(ll node){
+		if (node==final) return 1  ;
+		if (dp[node]!=-1) return dp[node] ;
+		ll ct = 0 ;
+		for(auto &ch:g[node]){
+			ct += f(ch) ; 
+		}
+		return dp[node] = ct ; 
+	}
+	// cout << f(start) << ln ;
+** simply found by analyzing samples 
+
+--> finding shortest or longest path (weighted DAG)
+	
+code : only for finding the minimum / max path cost 
+	ll f(ll node) {
+		if (node == finish) return 0  ;
+		if (dp[node] != -1) return dp[node] ;
+		ll mn =  1e18 ; // for max path : mx = -1e10 ; 
+		for (auto &[ch,weight] : g[node]) {
+			mn = min(mn, f(ch) + weight) ; // for max path : mx = max(mx,f(ch)+weight)
+		}
+		return dp[node] = mn  ;
+	}
+	
+code : also finds number of paths with min / max path cost 
+
+	ll mn_cnt = 0 ; // it is the number of smallest path from (u,v) 
+	pll f(ll node) {
+		if (node == finish) return  {0ll, 1ll} ;
+		if (dp[node] != pll{ -1, -1}) return dp[node] ;
+		ll mn =  1e18 , mn_cnt = 0  ;
+		for (auto &[ch, weight] : g[node]) {
+			pll p = f(ch) ;
+			ll val = p.ff + weight ;
+			if (val < mn) mn = val , mn_cnt = p.ss ;
+			else if (val == mn) mn_cnt += p.ss  ;
+		}
+		return dp[node] = {mn, mn_cnt}  ;
+	}
+	// cout << dp[node].ff << " " << dp[node].ss << ln ;
+	
+--> what is the minimum/maximum number of edges in a path + their count 
+	-> this is simple version of problem 2 , where every edge has value : 1
+	-> rest of the code is same 
+	
+-->  which nodes certainly appear in any path? (nodes which are part of every path possible)
+	-> the idea is 
+code :
+	vll visited(n + 1, 0) ;
+	ll mx_visited = 0 ;
+	ll  f(ll node) {
+		if (node == finish) return 1 ;
+		for (auto &ch : g[node]) {
+			visited[node] += f(ch) ;
+		}
+		mx_visited = max(mx_visited, visited[node]) ;
+		return (visited[node]?1:0) ; 
+	}
+	for(ll i=1;i<=n;i++){
+		if (visited[i]==mx_visited) cout << i << " " ;
+		cout << ln ;
+	}
+	
+USING GRAPH TO SOLVE PROBLEMS :
+	-> for the given set {1,3,4} and target = 6 , find the number of ways to get target 
+		-> also , find  smallest number of coins required 
+	
+code 1 : (find the number of ways to get target)
+
+	ll target = 6  ;
+	vll ways(target + 1, 0) , coins = {1, 3, 4} ;
+	void f(ll coin, ll curr_sm, ll way) {
+		way += ways[curr_sm] ;
+		ways[curr_sm] = way ;
+		if (curr_sm + coin <= target) f(coin, curr_sm + coin, way) ;
+	}
+	int main() {
+		ways[0] = 1 ;
+		sort(coins.rbegin(), coins.rend()) ;
+		for (auto &e : coins) f(e, 0, 0) ;
+		cout << ways[target] << ln ;
+	}
+	-> complexity :  O(coins*target) [using a graph approach]
+	
+
+SUCCESSSOR GRAPH :
+	-> it is a graph which can have many connected components 
+	-> each node will have only 1 outdegree
+	-> every component will have cycle 
+PROBLEM : find f(node,k) -> after "k" jumps from "node" , find the final position 
+	-> we can solve it using sparse-table concept 
+	-> for each node we will calculate all the f(node,2^i) using f(node,2^(i-i) ) 
+	
+code :
+	ll max_step = 1e9 ;
+	void sparsetable() {
+		ll pw = 0 , mx_pw = 0 ;
+		while ((1ll << (mx_pw + 1)) <= max_step) mx_pw++ ;
+
+		vector<vll> dp(n + 1, vll(mx_pw + 1)) ;
+		for (ll i = 1; i <= n; i++) {
+			dp[i][0] = adj[i] ;
+		}
+		for (ll i = 1; i<=mx_pw; i++) {
+			for (ll j = 1; j <= n; j++) {
+				dp[j][i] = dp[dp[j][i - 1]][i - 1] ;
+			}
+		}
+	}
+	--> finding the first node in the cycle and number of nodes in the cycle 	
+		(if we start from any node)
+	-> the first node to get visited twice is first node in the cycle 
+	-> each time we visit a node for the 2nd time -> the node belongs to cycle
+		-> when we visit a node for the third time , we are done 
+		
+FLOYDS-ALGO : (hare and tortoise algo)
+	-> there is another algo which we can use to solve succuessor-graph problem
+	-> it is better than dfs , because has O(1) time complexity 
+	-> two pointers : hare (2 steps at a time ) , tortoise (1 step at a time)
+		-> after some steps they will meet
+		-> when they meet , reset the tortoise 
+		-> this time both move (1 step at a time)
+		-> where they meet , is the starting point of the cycle
+	-> to find the cycle length , we can simply run a loop until we reach the starting node again 
+		
+		
+STRONG CONNECTIVITY :
+	-> a strongly connected graph is a directed graph , where there a path between any two nodes 
+	** COMPONENT GRAPH :
+		-> it is a graph where all the SCC (strongly connected component) are merged together to form DAG
+		-> each SCC is treated as a node in COMPONENT GRAPH
+	-> HOW TO FORM A COMPONENT GRAPH ?
+		-> use "KOSARAJU'S ALGO" to find all the SCC , and then treat them like a node 
+		-> if there is an edge between the SCC in the original graph , add it !
+		-> the final graph is a COMPONENT GRAPH (which is DAG)
+KOSARAJU'S ALGO 
+	-> it is an algo to find all the SCC in  a graph 
+		
+		
+		
+TREE QUERY :
+ • what is the kth ancestor of a node?
+ • what is the sum of values in the subtree of a node?
+ • what is the sum of values on a path between two nodes?
+ • what is the lowest common ancestor of two nodes?
+ --> for tree query part , we will solve these 4 problems 
+	
+FINDING K-TH ANCESTOR : 
+	-> we know the naive approach where we neek O(k) time per query
+	-> again we can use the sparseTable idea to find it in O(log(k)) time 
+
+code :
+
+	ll n = 1e5 ; 
+	void find_ancestor() {
+		ll pw = 0 , mx_pw = 0 ;
+		while ((1ll << (mx_pw + 1)) <= n) mx_pw++ ;
+
+		vector<vll> ancestor(n + 1, vll(mx_pw + 1)) ;
+		for (ll i = 1; i <= n; i++) {
+			ancestor[i][0] = par[i] ;
+		}
+		for (ll i = 1; i<=mx_pw; i++) {
+			for (ll j = 1; j <= n; j++) {
+				ancestor[j][i] = ancestor[ancestor[j][i - 1]][i - 1] ;
+			}
+		}
+	}
+	
+SUBTREE QUERY :
+	--> UPDATE AND FIND_SUM OF A SUBTREE (array a given a[node]=value of "node")
+	-> the idea is similar to a segment tree 
+		-> instead of (l,r)  only root of subtree is given
+	--> one idea is :
+		-> we can keep a dp table , dp[node] returns subtree sum of "node"
+		-> another array par , par[node] returns it parent 
+		-> when a node is updated , we updated the subtree sum of its ancestors 
+	--> but this idea has a flaw , if the tree is linear 
+		-> and each time the leaf node is updated , it is O(n) not O(log(n))
+		
+EULER TOUR (USING DFS) + SEGMENT TREE / FENWICK TREE 
+	-> we need to keep 3 array :
+		-> sum[node] : returns the subtree sum of "node"
+		-> pos[node] : index of "node" in dfs call 
+		-> sz[node]  : size of subtree of "node" 
+	-> we make a dfs call dfs(ll node,ll pos,ll subtree_sm,ll sz)
+		-> the benefit of dfs is , for each node , its subtree nodes come continuously 
+	-> to find subtree sum for "node" : l = pos[node] , r = pos[node]+sz[node]-1 
+		-> segment_tree(ll l,ll r) : finds sum in O(logn)
+	-> for update : index = pos[node] 
+	** we can also use fenwick tree for sum and update query 
+	
+UPDATE NODE AND FIND PATH SUM FROM ROOT NODE TO ANY OTHER NODE :
+	-> the idea is similar to what we had for subtree sum
+	-> we need 3 array
+		-> 	pos[node] , sz[node]
+		->  path_sum[node] : path sum from root to "node"
+		-> when a "node" value is updated , the entire subtree gets affected 
+			-> this update operation can be handled by seg_tree/BIT
+			
+FINDING LCA :
+	--> METHOD 1 : BINARY LIFTING 
+	-> we use the k-th ancestor sparse_table here as well
+	-> we need depth[node] -> which returns depth of "node" 
+	-> for node (u,v) : if depth[u] > depth[v] : we go up for "u" , in power of 2 (using binary lifting)
+	-> once we they are on the same depth , 
+		-> we go up simultaneously for both (u,v) using binary lifting 
+		-> we use bit representation for  common "depth" of (u,v) : from smallest power to largest power 
+		-> ex : both (u,v) are depth = 3 , 3 (decimal) = 11 (binary) 
+			-> we first go up by 2^0 , and then 2^1 , once we find a lca , we exit 
+	--> METHOD 2 : (USING EULER TOUR/DFS TRAVERSAL)
+		-> this method is well explained in book (179)
+	
+OFFLINE CALCULATION :
+
+FIND FREQ(X) FOR THE SUBTREE "S" (there are many such query)
+	--> for each subtree "s" , find the number of nodes with value "x"
+	-> the soln. to this problem is very creative  and based upon the c++ basic
+	-> we use dfs traversal to travel the tree 
+		-> initially for each node we keep a freq map , map<ll,ll> freq[n]
+		-> if we keep merging the child nodes freq map (freq[child]) with its parent 
+			-> we will get our answer 
+		-> but the issue is we get O(n^2) algo , for this merging 
+			-> O(n) for dfs traversal , O(n^2) for merging 
+	-> but we can use "union-by-size" , where we merge smaller group with larger one 
+		-> first we go through the children , and find the children with largest freq. map
+		-> the we do swap(freq[node],freq[child]) , this is O(1) because it  only makes pointer swap
+		-> so all of a sudden we are saving a lot of merging operations 
+			-> because we are not merging the largest child anymore , 
+		-> this makes the algo O(n*logn) , we are gonna see how ?
+			-> lets say our tree is a binary tree 
+			-> now for each node we are saving the calculation for the largest child
+			-> for a binary tree root node , can have largest child as >= n/2
+			-> so we are saving in the order n/2 + n/4 + n/8 + ..  
+				-> we know that , this is O(n*logn)
+		*** it is tricky to see that it will have O(n*logn) 
+		-> now since we are making swap operations , when we are done with calculating for a node 
+			-> we should immediately answer all the queries for that node
+			-> because later , the freq map for this node , might be swapped to its parent 
+			
+	
+LCA USING OFFLINE CALCULATION (TARJANS DSU METHOD)
+	--> this is a sexy application oF DSU !!!!
+					1
+				  / | \
+				 2  3  4
+				/ \     \
+			   5   6     7
+				   |
+				   8
+	-> to understand the algo we find lca(5,8) and lca(6,7)
+	-> Q : when are we sure "node" is not lca of (u,v) ??
+		-> answer : if we are done going through subtree "node" 
+			-> but we have not visited both (u,v) yet !!
+	-> ex : for (5,7) , after going through the subtree of "2" 
+		-> we did not visit both 5 & 7 .. it means they cant have "2" as their lca
+	-> that means , if lca(u,v) = "s" , we will surely visit both u & v before completely traversing "s"
+-->IDEA 
+	-> for each node we assign that node as its parent 
+	-> each time we visit a child subtree , we merge that child subtree with its parent subtree using DSU union
+	-> for lca(5,8)
+		-> consider subtree of "2" , after visiting "5" , "5" is merged with "2" (par[5]=2)
+		-> when we reach "8" ,we see "5" is already visited 
+			-> so we simply return  lca(5,8) = find(5)
+	-> for lca(6,7) 
+		-> in the subtree of "2" and "3" , we didnt visit both "6" & "7"
+		-> so it means lca(6,7) cannot belong to subtree of "2" or subtree of "3"
+		-> after we visit subtree "2" we merge this subtree with  "1" (par[2]=1)
+		-> same when we are done traversing subtree of "3" (par[3]=1)
+		-> when we enter subtree of "4" , we visit "7"  and we already visited "6"
+			-> so lca(6,7) = find(6) = 1 
+*** note two different algo for finding the same lca(u,v) : difference is the way we look at it !!!!!!!!
