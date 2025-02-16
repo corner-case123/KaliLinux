@@ -1,0 +1,198 @@
+******** sometimes we put together some  logical words together and get AC , but donno how/why it is working ***********
+
+-> Q1 : every element in the array occurs twice , except for one , find that ?
+	-> just xor the elements , the final xor value is the target elements
+-> Q2 : for a given n (<=1e9) in each  operation  n is replaced by sum of square of its digits , find whether it possible to get  1 ?
+	-> we can maintain a hash-set to see if we are in a cycle , if we get stuck in a cycle : return false 
+	-> else if at any point we reach 1 : return true 
+	-> PROOF : n <= 1e9 , can have at most 10 digits , and if each digit is '9' , max_sm = (9^2) * 10 = 810
+		-> so , we can see if we reach "1" , within 810 iterations : return true 
+		
+-> Q3 : kadane's algo 
+	-> it has time : O(n) , space : O(1)
+	-> but we can use prefix_sm :  time : O(n) and space O(n)
+		-> make a prefix sum array , for (ll i=0;i<n;i++) ans = max(ans,prefix[i]-min_so_far)
+		-> here , min_so_far is min. prefix from (0:i)
+		-> it considers each "i" as ending of subarray , then cleverly selects the best starting position 
+		
+-> Q4 : for a given array , move the zeros at the end while keeping the relative order of non-zero elements intact 
+		(note : solve in O(n) and dont use extra array)
+	-> lets define  "free" as the current position where we want to place the next non-zero element
+		-> when we place one non-zero element : free++ (repeat this process and finally fill the rem. position with zeroes)
+		
+-> Q5 : https://leetcode.com/problems/best-time-to-buy-and-sell-stock-ii/description/
+		-> we can use dp concept here !!
+		-> we can consider each day "i" as selling day
+			-> we sell stock on day "i" : if  mn_so_far <= a[i] ; once we sell the the stock on day "i"
+				-> we reset the mn_so_far = a[i]  (because we sold the previous stock)
+			-> if we cant sell a stock on that day : it means  : mn_so_far < a[i] , and we just do : mn_so_far = a[i] 
+		-> "dp is sexy"
+		** idea behind this soln is : if we can make profit by selling stock at day "i" , then we must do it 
+		
+	ADVANCED : solve the problem when we can possess any number of stock each day 
+		-> this is pure dp !!!!!
+		-> dp[i][j] -> the max value we can get on day "i" , if we possess "j" stocks
+		-> when we set initial value : 
+			for(ll i=0;i<n;i++){
+				for(ll j=0;j<=k;j++){
+					if (j==0) dp[i][j] = 0 ; (because we can always have 0 stock without any trade)
+					else dp[i][j] = -inf ; 
+				}
+			}
+		-> for(ll i=0;i<n;i++){
+			for(ll j=0;j<=k;j++){
+				// sell 
+				dp[i][j] = max({dp[i-1][j],dp[i][j],dp[i-1][j+1]+a[i],dp[i-1][j-1]-a[i]}) ; 
+			}
+		   }
+		** handle the out of bounds error in the code , logic is valid 
+
+-> Q6 :  group the anagrams together 
+		-> use map<string,vll> mp ; sort each string to search in the map , and insert the index into the vector 
+		->	we can also use a frequency string , where s[i] - '0' , is the count of occurance of 'i-th character 
+		
+-> Q : for a given array , find of all the x , such that x+1 is present in the array
+	-> we can use a hash-set 
+	-> we can use sorting + two-pointers 
+		-> for a group(val,group_size) : we do answer += group_size ; if (val+1) is present  
+	-> EXTRA : finding count of x such that  x" is present in the array , (x"!=x and abs(x"-x)<=k)
+	
+
+-> Q : find the middle node of linked-list in O(n) 
+	-> use two pointers , one move two steps at once , another moves one step at once
+	-> when the faster pointer reaches the end , the slower pointer points to the middle node 
+		-> this algo can simply be found by visualization 
+		
+-> Q :  https://leetcode.com/problems/backspace-string-compare/description/
+		-> to solve this problem without extra space 
+		-> just follow my soln  :) that i submitted 
+		
+-> Q : implement a min_stack which will perform : push() , pop() , top() , getMin() in O(1)
+		-> use pair<value,min_so_far> for this 
+		
+-> Q : find diameter of a binary tree 
+	-> use dfs(node) -> for each node take the two max depths of children and find the overall max_depth  
+	
+
+-> Q : find the max_len of subarray with equal number of zeroes and ones 
+	-> use prefix sum and  hashmap 
+	-> for 0 : perform sm-- ;  for  1 : perform sm++ ;
+	-> iterate the array , keep track of sm(a[0]:a[i]) , use hashmap to find the first occ of that "value" 
+
+			
+-> Q : https://leetcode.ca/all/1427.html
+	-> define "shifts" : for each left shift do shift++ ; for each right shift : shift-- 
+	-> do : (shift) % s.size() (because each block of 'n' shifts results in the same string)
+		-> now for the rem. shifts (<s.size()) , we can simulate the string in O(n)
+		
+		
+-> Q : find the product of all the elements except for a[i] for each "i" (it can have negative elements)
+	-> soln 1 : use prefix and suffix sum to avoid division-by-zero 
+	-> soln 2 : (no extra space ) : 
+		-> if the array has two zeroes then product for each "i" -> 0 
+		-> if the array has single zero -> it will have product of all non-zero elements ; and the rest will have product "0"
+		
+		
+-> Q : https://leetcode.com/problems/valid-parenthesis-string/description/
+	-> the main problem is what to do with "*" -> make it '(' or ')' or dont consider it 
+	-> we keep two deques : one for storing the indices for stars , and another for opening brackets
+	-> lets solve it for two cases :
+		-> try to make it "(" : (traverse the string) if we get a closing bracket without an opening bracket , we convert a "*" into "("
+		-> if at any point , we get  a  closing brackets and dont have any star or opening bracket left : return false 
+		-> for the second case : (check the deque) if there are opening brackets left in the deque , we try to balance them using starts 
+			-> note that : for balancing , pos[opening_bracket] < pos[star] 
+		-> looking at this requirement : we always want to erase  opening bracket with largest position first (either using star or closing)
+		-> also , when we use a star to balance a closing bracket , we use the star with smallest position 	
+			-> this allows us to preserve , stars with larger positions , which can be used to balance opening (wiht larger position)
+			
+	** my soln is also available 
+	** thanks to almighty for teaching me DP 
+	** the core idea is : greedy (we only use a start when we have to) (and also use the star with smallest position possible)
+		-> because a star at position 'i'  can close all the opening from position '0' to 'i-1' 
+		
+	--> soln by errichto (logical) : if we get an invalid sequence : it's either caused by opening or closing or both 
+		->invalid by closing :(left to right) we consider each star as opening , and check if at any point closing brackets exceeds the limit 
+		->invalid by opening :(right to left) we consider each star as closing , and check if at any point opening exceeds the limit 
+	** make it logical and keep it simple , doubts should also be logical and valid not random 
+	
+-> Q : https://leetcode.com/problems/search-in-rotated-sorted-array/description/	
+	-> the if we can find the pivot  ,we can simply run binary search in two parts 
+	-> note that : the rotated part will be < a[0] ( the array is sorted and elements are distinct)
+	-> if (a[mid] > a[0] ) we are in the first (larger) part 
+		-> else we are in the second part 
+	-> we want to find the smallest index of second part
+	
+	
+-> Q : create BST from inorder traversal 
+	-> good news is i found the O(n) soln !!!!! which is also soln by erricho
+	-> bad news , there is a sexy O(n^2) soln which i missed
+	-> the quadratic soln :
+		-> for each node , create two vectors smaller and larger : smaller[i] < node.value , larger[i] > node.value
+		-> now keep building the BST recursively , using smaller (for left subtree) and larger vector (for right subtree) 
+	-> the linear soln : here we dont create vectors for right and left subtree for each node 
+	-> we keep a global pointer to know which node we are dealing with and "limit" to know the max value we can place in the subtree
+	-> { 8,5,1,7,10,12 }
+		-> "8".left = "1"  , "5".left = "1" ; 
+		-> now for node "1" , we dont know whether: "1".right = "7" or go back to parent node
+		-> we know that by "limit"  variable , since "1" is in the left subtree of "5" , we cannot do "1".right = "7"
+		-> for node "5" , it is in the left subtree of "8" , and "8" > "7" , so we can do : "5".right = "7"
+	** this allows O(n) soln and O(1) space
+ 
+ 
+ 
+ 
+ -> Q :  https://leetcode.com/problems/bitwise-and-of-numbers-range/description/
+	-> for for bitwise representation of {l,r} they have a common prefix ,
+		-> and the first position the differ , from there on , all bits will have "&" as 0 
+			-> 101 011000
+			-> 101 100000 (in between number)
+			-> 101 100011
+		-> for the common prefix part , if  bit is "0" , then "&" is also  "0" , otherwise it is "1" 
+		
+-> Q : https://leetcode.com/problems/jump-game/description/
+	-> if the array does not have a[i] = 0 , then the answer is always "true"
+	-> if there are zeroes , we cannot step onto them 
+		-> if we dont want to step onto them , from some position from the left , we have to jump to the right (avoiding zero)
+		-> we have to do that for every zero 
+		-> finally , we have to check if for any zero , we cant jump over it (from left to right ) , return "false"  , else return "true"
+	** advance version : find the minimum number jumps needed to reach the end , if possible at all 
+		-> the idea is similar and implementation too !!!!
+	** difference between noob and master : master makes it look so
+														********* SIMPLE**************
+														
+-> Q :  https://leetcode.com/problems/maximal-square/description/
+	-> this is a dp problem , i found a soln which is a bit slow , but works 
+		-> my soln is O(n^2 * log(n))
+		-> the soln is submitted 
+		-> we use cumulative row-sum in this case and inclusion-exclusion principle to find number of '1' in any square grid 
+	-> my soln is more simple , but errichto soln is sexier (O(n^2))
+	-> i can also store count of zeroes , to make my life a bit easier 
+	
+-> Q : https://leetcode.com/problems/binary-tree-maximum-path-sum/description/
+	-> this another sexy tree problem , where we know each path must have a root (highest) node 
+		-> for each node : max_path_sum through that node = max(right_subtree,0)+max(left_subtree,0)+node.value ; 
+			-> finally we return max of all those paths_sums
+		-> for each node , we return : max(max({left,right,0})+node.value,0)  to its parent 
+	** so by simply understanding that , each path must have a "root" , we have solved this "hard" problem 
+	
+
+-> Q : https://leetcode.com/problems/lru-cache/description/
+	-> this is the only problem that took errichto 40mins to solve
+	-> we have two soln : queue + hashmap , linked_list + hashmap
+	(queue + hash_map) (easier one)
+		-> it is simple , but it has an amortized O(1) not actual O(1), also it takes more space 
+		-> we can check whether a key exist in cache using hashmap , O(1)
+		-> for the "least recently used" , we use a queue 
+		-> if "key" does not exist , we can simply push into the queue\
+		-> else , we can still push it , without removing its copies , and maintain the final index of a "key" (using hashmap)
+			-> to know , what is the actual position of a "key"
+		-> this saves the O(n) complexity for deleting a "key" explicitly 
+		-> worst case , it can take O(n) , since there are copies , but on average it is constant 
+	(linked-list + hashmap)
+		-> it is a bit advanced , but it has constant O(1) and better space complexity
+		-> instead of using a queue , we use a linked-list to find "least recently used" (head is "lru" and tail is "mru")
+		-> when we access a "key", we can update its position and make it "mru" in O(1)
+			-> we use hashmap , to store the memory pointer  for each node "key" , allowing us O(1) search time 
+			-> after searching , we append it (make it "mru") , (same way we update a linked list)
+	** good news is , i found both soln !!!!!!
+	** there is a "list" data-structure , we can use instead of doubly linked list 
