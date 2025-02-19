@@ -29,7 +29,8 @@ int main() {
 	cin.tie(NULL);
 	setIO() ;
 	ll t = 1 ; 
-	cin >> t ;
+	cout << __cplusplus  << ln ;
+	//cin >> t ;
 	for(ll i=1;i<=t;i++){
 		//cout << "Case " << i << ": " ;
 		solve() ;
