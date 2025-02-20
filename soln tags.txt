@@ -6,11 +6,11 @@
   -> print things and find pattern : 1 
 2) logical analysis of problem +  claim/hypothesis/deduction : 50
 3) dry-run some cases and look at the findings/problem from diff. angle : 15
-4) solve the problem for simpler cases and then solve the actual problem : 5
+4) solve the problem for simpler cases and then solve the actual problem : 6
 5) simplify/modify the problem and form/modify equation from statement : 9
   -> use math equation and inequality to solve : 1 
 6) bold claim/intuitive claim (without proof): 5
-7) lets say i have a soln &&  what characteristics would it have / working from soln / working backwards : 7
+7) lets say i have a soln &&  what characteristics would it have / working from soln / working backwards : 8
 8) similar to past problems : 10
 9) formulate the problem-statement / make a proper structure from the statement  : 3
 10) solid knowledge/theory : 2
