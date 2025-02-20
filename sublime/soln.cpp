@@ -20,20 +20,28 @@ void setIO(const string io="a"){
     freopen((io+".in").c_str(),"r",stdin) ;
     freopen((io+".out").c_str(),"w",stdout) ;
 }
+
+
+ll cal(vpll &a,ll x,ll y){
+	ll sm = 0 ;
+	for(auto &e:a){
+		sm += abs(e.ff-x) + abs(e.ss-y) ; 
+	}
+	return sm ; 
+}
+vll a  ;
 void solve(){
-	
-	return ; 
+	ll n ; cin >> n ;  
+	vpll a(n) ; 
+	for(auto &e:a) cin  >> e.ff >> e.ss ;  
 }
 int main() {
     ios_base::sync_with_stdio(false);
 	cin.tie(NULL);
 	setIO() ;
-	ll t = 1 ; 
-	cout << __cplusplus  << ln ;
-	//cin >> t ;
+	ll t = 1 ; cin >> t ;
 	for(ll i=1;i<=t;i++){
-		//cout << "Case " << i << ": " ;
-		solve() ;
+		solve() ; 
 	}
     return 0;
 }
