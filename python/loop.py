@@ -35,3 +35,16 @@ friend_drink1.append("laban")
 print(my_drink)
 print(friend_drink1)
 print(friend_drink2) 
+
+
+## tuple 
+
+menu = ("tea","coffee","expresso","milk-shake")
+print(menu)
+# menu[0] = "cappucino"  --> wont work
+# menu.append("aroma")   --> wont work
+# tuple can only be changed by reassigning 
+menu = ("gold-coffee","lacchi","apple-juice") 
+print(menu)
+
+
