@@ -1,0 +1,29 @@
+
+--how to download g++ and gcc latest version --
+
+sudo add-apt-repository ppa:ubuntu-toolchain-r/test
+sudo apt update
+	sudo apt install gcc-14 g++-14
+
+
+--how to remove g++ and gcc --
+
+	sudo apt remove gcc g++
+	sudo apt purge gcc g++   (delete config. also)
+	sudo apt autoremove   (delete no need files)
+
+--version check--
+gcc-14 --version  g++-14 --version
+
+
+--how to install sublime-text-- 
+
+	sudo snap install sublime-text (4192)
+
+--how to clone repo from github--
+	1) install git 
+	2) create add your laptops ssh key to github (settings->ssh & gpg key)
+	3) clone the repo using user-name and repo-name (pass not needed) 
+
+
+
