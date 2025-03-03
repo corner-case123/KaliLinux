@@ -24,6 +24,14 @@ gcc-14 --version  g++-14 --version
 	1) install git 
 	2) create add your laptops ssh key to github (settings->ssh & gpg key)
 	3) clone the repo using user-name and repo-name (pass not needed) 
+	
+	
+--open oracle--
+
+1) sudo docker exec -it oracle-db-container bash
+2) sqlplus / as sysdba
+
+
 
 
 

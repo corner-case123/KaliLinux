@@ -4,11 +4,11 @@
 
 1) observation : 13
   -> print things and find pattern : 1 
-2) logical analysis of problem +  claim/hypothesis/deduction : 53
-3) dry-run some cases and look at the findings/problem from diff. angle : 16
+2) logical analysis of problem +  claim/hypothesis/deduction : 55
+3) dry-run some cases and look at the findings/problem from diff. angle : 18
 4) solve the problem for simpler cases and then solve the actual problem : 6
-5) simplify/modify the problem and form/modify equation from statement : 10
-  -> use math equation and inequality to solve : 2 
+5) simplify/modify the problem and form/modify equation from statement : 11
+  -> use math equation and inequality to solve : 3
 6) bold claim/intuitive claim (without proof): 5
 7) lets say i have a soln &&  what characteristics would it have / working from soln / working backwards : 8
 8) similar to past problems : 10
@@ -16,12 +16,12 @@
 10) solid knowledge/theory : 2
 11) solving by sub-problems/components/different cases(for n%2==0 soln1 and n%2==1 soln2) : 17
 12) soln design using DS : 4
-## think in a dp manner -> how we transition from one state (choice) to another :  6
+## think in a dp manner -> how we transition from one state (choice) to another :  7
   -> this also helps to find proof 
 ## look at the constraints , conditions and sample cases
   -> can you find any soln idea or observation from sample :  6
   -> do you see any special constraint or condition that can provide  hint or give  idea : 3
-## check if it has a monotonic property or not : 6
+## check if it has a monotonic property or not : 7
 ## deal with the problems first  :  3
   ->lets say i have to minimise some cost 
   -> for this , check which entities affects my minimum cost the most
