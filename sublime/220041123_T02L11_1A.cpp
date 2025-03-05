@@ -25,13 +25,25 @@ const ll mod = 998244353 ;
 
 
 void solve() {
-    
+    ll n ,  m ; cin >> n >> m ; 
+    vll degree(n+1,0) ;
+    for(ll i=0;i<m;i++){
+        ll u , v ; cin >> u >> v;  
+        degree[u]++ ; degree[v]++ ;
+    }
+    for(ll i=1;i<=n;i++){
+        if (degree[i]!=degree[1]){
+            cout << "NO" << ln ;
+            return ;
+        }
+    }
+    cout << "YES" << ln ;
 }
 
 int main(){
     setIO() ;
     ll t = 1 ;  
-   cin >> t ;
+ //  cin >> t ;
     while(t--) solve() ;
     return 0 ;
 }

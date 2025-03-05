@@ -25,13 +25,34 @@ const ll mod = 998244353 ;
 
 
 void solve() {
-    
+    ll n ,  m ; cin >> n >>  m ; 
+    vector<vll> g(n+1) ; 
+    vector<vll> mat(n+1,vll(n+1)) ;
+    for(ll i=0;i<m;i++){
+        ll u , v ; cin >> u >> v ;
+        mat[u][v] = 1 ; mat[v][u] = 1 ; 
+        g[u].push_back(v) ; g[v].push_back(u) ; 
+    }
+    cout << "adjacency list :" << ln ;
+    for(ll i=1;i<=n;i++){
+        if (g[i].empty()){
+            continue ; 
+        }
+        cout << i << ": "  ; 
+        for(auto &e:g[i]) cout << e << " " ; cout << ln ;
+    }
+    for(ll i=1;i<=n;i++){
+        for(ll j=1;j<=n;j++){
+            cout << mat[i][j] << " " ; 
+        }
+        cout << ln ;
+    }
 }
 
 int main(){
     setIO() ;
     ll t = 1 ;  
-   cin >> t ;
+ //  cin >> t ;
     while(t--) solve() ;
     return 0 ;
 }
