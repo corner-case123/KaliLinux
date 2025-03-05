@@ -1,6 +1,6 @@
 
 
--> soln tags :
+-> Soln Tags :
 
 1) observation : 14
   -> print things and find pattern : 1 
