@@ -17,6 +17,16 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+# import custom page-view
+from pages.views import homepage_view , contact_view , social_view
+
 urlpatterns = [
+    # custom url routing 
+    path('contact/', contact_view, name='contact') ,
+    path('home/', homepage_view, name='home') ,
+    path('', homepage_view, name='home') ,
+    path('social/', social_view, name='social') ,
+
+    # default url 
     path('admin/', admin.site.urls),
 ]

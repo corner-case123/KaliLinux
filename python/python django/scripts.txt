@@ -1,0 +1,138 @@
+django structure :
+
+myproject/
+    manage.py
+    myproject/
+        settings.py
+        urls.py
+        wsgi.py
+    app1/
+    app2/
+
+run the the server 
+	python manage.py runserver   
+create the tables 
+	python manage.py migrate 
+create superuser 
+	python manage.py createsuperuser 
+	
+create app 
+	python manage.py startapp app_name 
+	for  creating classes for app  write inside models.py (classes,func etc)
+	add it to admin menu from admin.py
+	add the app name to settings.py
+	
+	run : (terminal)
+	python manage.py makemigrations (store the updates)
+	python manage.py migrate (apply the updates)
+	
+	create class object for app  
+	
+	python manage.py shell
+	from app_name.models import app_class 
+	app_class.objects.all()  [lists all the current objects]
+	app_class.objects.create(param1='',param2='',...) [new obj]
+	
+	
+making changes app_class :
+
+	after adding new fields , to sync with the old objects 
+	we must provide some default values , since the old objects
+	dont know anything about new fields
+	
+blank , and null keyword :
+
+	blank : whether field can be left as empty 
+	null : whether it will store "null" for a blank field instead of empty-string  
+		it can diff. between "no data" and "empty data"
+	
+
+default to custom home-page (django) : 	
+
+	from django.http import HttpResponse
+	use HttpResponse() to render html onto pages 
+	then add the url into url.py , [process mentioned there]
+	
+URL routing and requests  :
+	
+	import the view_func from app 
+	write into url.py -> url_pattern
+		path('contact/', contact_view, name='home') ,
+		path('home/', homepage_view, name='home') ,
+		path('', homepage_view, name='home') ,
+		
+	
+	using request.user to detect user : 
+	
+	def homepage_view(request,*args,**kwargs) :
+		print(request.user) 
+		return HttpResponse("<h1>Hello World!</h1>") # html string 
+		
+		
+django template : 
+
+	instead of writing the entire html for page_view
+	we can also write an home.html , contact.html and then render it
+	
+	def homepage_view(request) :
+		print(request.user)
+		return render(request,"home.html",{}) # syntax
+		
+	create a separate folder named "templates" and write the html there
+	inside settings.py -> import os 
+	then add "templates" folder's path to settings.py -> templates[] -> DIR = [os.path.join(BASE_DIR,"templates")]
+	
+	(this path function will work for all devices)
+	
+	
+django templating engine : (template inheritence)
+	
+	lets say i have a base.html template which i want to follow
+	for all html without writing from 0 each time
+	
+	create  a "base.html" and write the structure there  and include this part 
+	
+		{% block content %}
+			replace me 
+		{% endblock content %}
+	
+	then inside home.html , write using this syntax
+	
+		{% extends "base.html" %}
+		{% block content %}
+		
+		<h1>Hello World</h1>
+		<p>This is a template</p>
+		
+		{% endblock content %}
+
+
+include template tags :
+
+	to include one html files content into another html 
+	
+	{% include navbar.html %}  #template tag
+	
+
+rendering context in a template  :
+
+	def contact_view(request,*args,**kwargs) :
+    my_dict = {
+        "my_id"   : "41123" ,
+        "my_dept" : "cse" ,
+        "my_name" : "hasan" 
+    } # my_dict is the context 
+	
+    print(request.user) 
+    return render(request,"contact.html",my_dict)
+	
+	# include it in .html using the following format : 
+	{{my_id}}, {{my_dept}}, {{my_name}}
+	
+	
+	
+for loop inside template :
+
+	lets say we have a list , but we want to render item by item
+	we can do  so by for loop inside template to render them separately 
+	
