@@ -11,9 +11,9 @@ def contact_view(request,*args,**kwargs) :
     my_dict = {
         "my_id"   : "41123" ,
         "my_dept" : "cse" ,
-        "my_name" : "hasan" 
+        "my_name" : "hasan" ,
+        "my_list" : [310,308,309,302] 
     }
-    my_list = ["310","309","308","302"] 
     print(request.user) 
     return render(request,"contact.html",my_dict)
 

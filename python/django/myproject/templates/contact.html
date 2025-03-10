@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+<h1> This is contact page</h1>
+<p>Django is fun</p>
+<p>
+    {{my_id}}, {{my_dept|upper|lower}}, {{my_name|lower|upper}}
+<ul>
+    {% for item in my_list %}
+        {% if item == 310 %}
+            <li>{{forloop.counter}} - {{item}} - This is my room </li>
+        {% elif item == 308 %}
+            <li>{{item}} - Room of genius</li>
+        {% else%}
+            <li>{{forloop.counter}} - {{item}}</li>
+        {%endif%}
+    {% endfor %}
+</ul>
+
+
+
+</p>
+{% endblock content %}

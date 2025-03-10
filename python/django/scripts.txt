@@ -106,7 +106,7 @@ django templating engine : (template inheritence)
 		
 		{% endblock content %}
 
-
+(note that templates  tags or syntax are for html file )
 include template tags :
 
 	to include one html files content into another html 
@@ -135,4 +135,72 @@ for loop inside template :
 
 	lets say we have a list , but we want to render item by item
 	we can do  so by for loop inside template to render them separately 
+	
+		
+	def contact_view(request,*args,**kwargs) :
+		my_dict = {
+			"my_id"   : "41123" ,
+			"my_dept" : "cse" ,
+			"my_name" : "hasan" ,
+			"my_list" : [310,308,309,302] 
+		}
+		print(request.user) 
+		return render(request,"contact.html",my_dict)
+		
+		
+	to loop over my_list we can use : (inside contact.html)
+	
+		<ul>
+			{% for item in my_list %}
+				<li>{{item}}</li>
+			{% endfor %}
+		</ul>
+		
+	use {{forloop.counter}} -> to get the iteration number 
+	
+	
+template conditional :
+
+	{% if condition%}
+	
+	{% elif condition%}
+	
+	{% else %}
+	
+	{% endif %}
+	
+	
+template tags and filters :
+
+	for each html entity we can add some tags to format or mod that entity -> data|tag1|tag2|.. 
+	the tag order matters and they are applied from left to right 
+	
+	
+render data from database with model :
+
+	http://127.0.0.1:8000/admin/products/product/3/change/
+	
+	we notice that it has id = 3 , but we didnt have id field for data 
+	this is because django has in-built id for each object of class 
+	we can find those default ones in : myproject\products\migrations\0001_initial.py
+	
+	
+	ex : lets say we have some products in Product class , we want to render all those product into a html page 
+	
+	from .models import Product  # .models is used for relative file path 
+	
+	
+	
+how django template-loader loads works with apps 
+
+	if we ever encounter an error about file_path -> we can see the report of template-loader postmortem
+	
+	there we can see the paths django explored to find the desired file
+	for products app , we can see django also checks for the file in : products/templates/show_product.html
+	it  means for an app , we can place the templates in : app_name/templates/file.html 
+	**this is called in-app template **	
+	
+	
+django  model forms : 
+
 	
