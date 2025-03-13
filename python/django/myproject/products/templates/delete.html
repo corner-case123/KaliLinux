@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>do you want to delete {{obj.title}} having {{obj.id}} ? </h2>
+<form method = "POST">
+    {% csrf_token %}
+    <button  type="submit">delete</button>   
+    <!-- submittig this form triggers a POST request -->
+</form>
+{% endblock content %}

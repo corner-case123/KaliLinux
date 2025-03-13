@@ -19,7 +19,7 @@ from django.urls import path
 
 # importing the functions for page rendering 
 from pages.views import homepage_view , contact_view , social_view
-from products.views import show_product
+from products.views import show_product ,form_view , product_create_view ,dynamic_page_view ,product_delete_view
 
 urlpatterns = [
     # custom url routing 
@@ -28,7 +28,10 @@ urlpatterns = [
     path('home/', homepage_view, name='home') ,
     path('', homepage_view, name='home') ,
     path('social/', social_view, name='social') ,
-    path('product/',show_product , name='product list') ,
+    path('product_form/', product_create_view , name='product list') ,
+    path('product/<int:my_id>/',dynamic_page_view , name='product list') , 
+    path('product/<int:product_id>/delete',product_delete_view , name='product delete') ,
+     # here the product_id is extracted and passed as param.
 
     # default url 
     path('admin/', admin.site.urls),

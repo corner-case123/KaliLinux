@@ -203,4 +203,98 @@ how django template-loader loads works with apps
 	
 django  model forms : 
 
+	create a form , that will create a class object from the data given into the form 
 	
+	
+raw html form : 
+	
+	request type : .GET : to get info from url  , 	.POST : to save info in the backend 
+	action : it takes to another url 
+	
+	request.method  ==  "POST" or requests.method == "GET"
+	print(request.POST)
+	print(request.GET)
+	
+	
+pure django model : 
+
+	other than , raw html form , we can use django in-built form , which has data_validation as well 
+
+	!!!!!!!!!!!!!! task : use django models widget = forms.Textarea(attrs= {})  to customize form fields !!!!!!!!!!!
+	
+	** we can use attr={} to mod. the html content **
+	class RawProductForm(forms.Form) :
+
+		title = forms.CharField(label='title',widget=forms.Textarea(
+			attrs={
+				"placeholder" : "title of product" ,
+				"rows" : 5 ,
+				"cols" : 50 
+			}
+		))
+		desc  = forms.CharField(required=False,widget=forms.Textarea(
+			attrs={
+				"class" : "class-for-desc" ,
+				"id"  : "id-for-desc" ,
+				"rows" : 20 , 
+				"cols" : 120 
+			}
+		))
+		price = forms.DecimalField(initial=199.99) 
+	
+	** we can use django form fields to override raw-html form fields
+	
+	
+form validation method :
+
+	 when form_name.is_valid()  is called : for each field_name clean_<fieldname>() is called 
+		we can use this behaviour to perform custom form_validation
+		
+	**  obj = products.objects.get(id=1)
+	
+	
+initial values for form : (not placeholder , actual data )
+
+	** task : mod. your func. in views.py to have initial values for each field   
+	
+	initial_data = {
+        "title" : "this is an initial title" ,
+        "desc" : "this is an initial desc" ,
+        "price" : 69.99 
+    }
+    my_form = RawProductForm(initial=initial_data) # pass the initial data
+	
+	** use dict. and pass it into functions of views.py to render it 
+
+dynamic url routing :
+
+	task : there are many product object created for Product class 
+			make sure we can access them using their in url , (ex : product/id/)
+			
+
+handle does not exist :
+
+	continuation of dynamic-url-routing 
+	
+	def dynamic_page_view(request,my_id) :
+		try :
+			obj = Product.objects.get(id=my_id)
+		except Product.DoesNotExist :
+			raise Http404
+
+		context ={
+			"obj" : obj
+		}
+		return render(request,"product.html",context)
+	
+	task : if we look for a product_id which is not present , raise an error Http404
+	
+delete and confirm : 
+
+	task : delete a Product object from database from web
+	
+
+View of a List of Database Objects
+	task : render all the created objects of Product in html 
+
+dynamic linking of url 

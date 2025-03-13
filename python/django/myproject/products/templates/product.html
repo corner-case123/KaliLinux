@@ -2,12 +2,16 @@
 {%block content%}
 <p>Details of the products we have currently</p>
 <ul>
-    {% for product in products %}
+    <!-- {% for product in products %}
         <p><strong>Product Title   :</strong>-{{product.title}} </p>
         <p><strong>Product Price   :</strong>-{{product.price}}</p>
         <p><strong>Product Title   :</strong>-{{product.desc}}</p>
         <p><strong>Product Summary :</strong>-{{product.summary}}</p>
         <br>
-    {% endfor %}
+    {% endfor %} -->
+    <p> Product Title : {{obj.title}}</p>
+    <p>Product Desc : {{obj.desc}}</p>
+    <p>Product Price : {{obj.price}}</p>
+    <p>Product Summary : {{obj.summary}}</p>
 </ul>
 {%endblock content%}
