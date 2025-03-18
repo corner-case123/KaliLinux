@@ -24,27 +24,20 @@ void setIO(const string io = "a") {
 const ll mod = 998244353 ;
 
 void solve() {
-    ll n ;  cin >> n ;
-    vll a(n)  ; for (auto &e : a) cin >> e ;
-    vector<vll> sparse(n, vll (log2(n) + 10) ) ;
+    ll n , q  ;  cin >> n >> q ;
+    vll a(n) ; for (auto &e : a) cin >> e ;
+    vll p(n) ;
     for (ll i = 0; i < n; i++) {
-        sparse[i][0] = a[i] ;
+        if (a[i] == 1) p[i]++ ;
+        else p[i]-- ;
+        if (i > 0) p[i] += p[i - 1] ;
     }
-    for (ll j = 1; j <= log2(n) + 10; j++) {
-        for (ll i = 0; i < n; i++) {
-            if (i + (1ll << j) > n) {
-                break ;
-            }
-            sparse[i][j] = (sparse[i][j - 1]  | sparse[i + (1ll << (j - 1))][j - 1]) ;
-
-        }
-    }
-    ll q ; cin >> q  ;
     while (q--) {
-        ll l , r , i ; cin >> l >> r >> i ;
-        ll pw = log2(r - l + 1) , val = sparse[l][pw] | sparse[r - (1ll << pw) + 1][pw]  ;
-        if (val == a[i]) cout << "YES" << ln;
-        else cout << "NO" << ln ;
+        ll l , r ; cin >> l >> r ;
+        l-- ; r-- ;
+        ll val = abs(p[r] -  ((l > 0) ? p[l - 1] : 0) ) ;
+        if (val % 2 == 0) cout << val / 2 << ln ;
+        else cout << -1 << ln ;
     }
 }
 

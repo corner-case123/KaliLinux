@@ -35,16 +35,17 @@ void solve() {
             if (i + (1ll << j) > n) {
                 break ;
             }
-            sparse[i][j] = (sparse[i][j - 1]  | sparse[i + (1ll << (j - 1))][j - 1]) ;
-
+            sparse[i][j] = __gcd(sparse[i][j - 1] , sparse[i + (1ll << (j - 1))][j - 1]) ;
+            //cout << i << " " << j << " " << sparse[i][j] << ln ;
         }
     }
     ll q ; cin >> q  ;
     while (q--) {
-        ll l , r , i ; cin >> l >> r >> i ;
-        ll pw = log2(r - l + 1) , val = sparse[l][pw] | sparse[r - (1ll << pw) + 1][pw]  ;
-        if (val == a[i]) cout << "YES" << ln;
-        else cout << "NO" << ln ;
+        ll l ,  r ;  cin >> l >> r ;
+        ll pw = log2(r - l + 1) ;
+        //cout << l << " " << r << " " << pw << ln ;
+        //cout << sparse[l][pw] << " " <<   sparse[r - (1ll << pw) + 1][pw]  << ln ;
+        cout << __gcd(sparse[l][pw], sparse[r - (1ll << pw) + 1][pw]) << ln ;
     }
 }
 

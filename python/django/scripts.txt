@@ -298,3 +298,7 @@ View of a List of Database Objects
 	task : render all the created objects of Product in html 
 
 dynamic linking of url 
+
+
+
+Class Based Views - ListView
