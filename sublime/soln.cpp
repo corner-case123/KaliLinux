@@ -1,57 +1,54 @@
 #include <bits/stdc++.h>
-#include <ext/pb_ds/assoc_container.hpp>
-#include <ext/pb_ds/tree_policy.hpp>
-using namespace __gnu_pbds;
-typedef tree<int, null_type, std::less<int>, rb_tree_tag, tree_order_statistics_node_update> indexed_set;
-#define ln '\n'
+#define ln endl
 #define ull unsigned  long long
-#define ll long long
+#define ll  long long
 #define vll vector<ll>
-#define pll pair<ll, ll>
 #define ff first
-#define vpll vector<pair<ll,ll>>
-#define pii pair<int,int> b
-#define ld long double
 #define ss second
+#define vpll vector<pair<ll,ll>>
+#define pll pair<ll,ll>
 using namespace std;
 
 
 void setIO(const string io = "a") {
-    freopen("in.txt", "r", stdin) ;
-    freopen("out.txt", "w", stdout) ;
+    freopen("a.in", "r", stdin) ;
+    freopen("a.out", "w", stdout) ;
 }
 
-const ll mod = 998244353 ;
+ll n ;
+vpll ans ;
+set<pll> st ;
+void f(pll p){
+    if (st.find(p)!=st.end()) return ;
+    cout << "? " << p.ff << " " << p.ss  << ln ;
+    ll x  ;  cin >> x ;
+    if (x==p.ff) {
+        ans.push_back({p.ff,p.ss}) ;
+        st.insert({p.ff,p.ss}) ;
+        return  ;
+    }
+    f({x,p.ss}) ;
+}
 
-void solve() {
-    ll n ;  cin >> n ;
-    vll a(n)  ; for (auto &e : a) cin >> e ;
-    vector<vll> sparse(n, vll (log2(n) + 10) ) ;
-    for (ll i = 0; i < n; i++) {
-        sparse[i][0] = a[i] ;
-    }
-    for (ll j = 1; j <= log2(n) + 10; j++) {
-        for (ll i = 0; i < n; i++) {
-            if (i + (1ll << j) > n) {
-                break ;
-            }
-            sparse[i][j] = (sparse[i][j - 1]  | sparse[i + (1ll << (j - 1))][j - 1]) ;
 
-        }
+
+
+void solve(){
+    cin >> n ;
+    ans.clear() ; st.clear() ;
+    for(ll i=2;i<=n;i++){
+        f({1,i}) ;
     }
-    ll q ; cin >> q  ;
-    while (q--) {
-        ll l , r , i ; cin >> l >> r >> i ;
-        ll pw = log2(r - l + 1) , val = sparse[l][pw] | sparse[r - (1ll << pw) + 1][pw]  ;
-        if (val == a[i]) cout << "YES" << ln;
-        else cout << "NO" << ln ;
-    }
+    cout << "! " ;
+    for(auto &p:ans) cout << p.ff << " " << p.ss << " " ;
+    cout << endl ;
 }
 
 int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
     setIO() ;
-    ll t = 1 ;
-    //cin >> t ;
-    while (t--) solve() ;
-    return 0 ;
+    ll t = 1 ; cin >> t ;
+    while(t--) solve() ;
+    return  0 ;
 }
