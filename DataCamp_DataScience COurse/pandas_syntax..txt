@@ -1,0 +1,31 @@
+
+--> dogs is a DataFrame
+
+methods of Pandas DataFrame :
+	print(dogs.head()) 
+	print(dogs.info()) 
+	print(dogs.shape)  
+	print(dogs.describe()) 
+	print(dogs.values)
+	print(dogs.columns) 
+	dogs.index 
+
+sorting :
+	dogs.sort_values("weight_kg", ascending=False)
+	dogs.sort_values(["weight_kg", "height_cm"], ascending=[True, False]) 
+	
+Subsetting multiple columns :
+
+	 dogs["name"]
+	 dogs[["breed", "height_cm"]]
+ 
+ 
+Subsetting based on conditions :
+	 dogs[dogs["breed"] == "Labrador"]
+	 dogs[dogs["date_of_birth"] < "2015-01-01"] 
+	 dogs[ (dogs["breed"] == "Labrador") & (dogs["color"] == "Brown") ]
+     
+     
+Subsetting using .isin() :
+     is_black_or_brown = dogs["color"].isin(["Black", "Brown"]) 
+     dogs[is_black_or_brown] 

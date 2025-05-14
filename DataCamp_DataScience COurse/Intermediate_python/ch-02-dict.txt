@@ -1,0 +1,102 @@
+# Definition of dictionary
+europe = {'spain':'madrid', 'france':'paris', 'germany':'berlin', 'norway':'oslo' }
+
+# Print out the keys in europe
+print(europe.keys()) # keys() method
+
+# Print out value that belongs to key 'norway'
+print(europe['norway'])
+
+europe['china'] = 'beijing' # insert
+print('china' in europe)    # check (True)
+del europe['norway'] # remove
+
+
+#### sample-01
+
+# Dictionary of dictionaries
+europe = { 'spain': { 'capital':'madrid', 'population':46.77 },
+           'france': { 'capital':'paris', 'population':66.03 },
+           'germany': { 'capital':'berlin', 'population':80.62 },
+           'norway': { 'capital':'oslo', 'population':5.084 } }
+
+
+# Print out the capital of France
+print(europe['france']['capital'])
+
+# Create sub-dictionary data
+data = {'capital':'rome','population':59.83}
+
+# Add data to europe under key 'italy'
+europe['italy'] = data
+
+# Print europe
+print(europe)
+
+
+                                                 ##### Pandas, Part 1
+
+import pandas as pd
+
+######### code-01
+# Build cars DataFrame
+names = ['United States', 'Australia', 'Japan', 'India', 'Russia', 'Morocco', 'Egypt']
+dr =  [True, False, False, False, True, True, True]
+cpc = [809, 731, 588, 18, 200, 70, 45]
+cars_dict = { 'country':names, 'drives_right':dr, 'cars_per_cap':cpc }
+cars = pd.DataFrame(cars_dict)
+print(cars)
+
+# Definition of row_labels
+row_labels = ['US', 'AUS', 'JPN', 'IN', 'RU', 'MOR', 'EG']
+
+# Specify row labels of cars
+cars.index = row_labels
+
+# Print cars again
+print(cars)
+
+######## code-02
+# Import pandas as pd
+import pandas as pd 
+
+# Import the cars.csv data: cars
+cars = pd.read_csv("cars.csv") # imports the cars.csv as TAble(DataFrames) for Pandas 
+## cars = pd.read_csv('cars.csv',index_col=0) # index_col is which col to use as label
+
+# Print out cars
+print(cars)
+
+                                            ##### Pandas, Part 2
+                                            ## Index and select data
+
+####### code-01
+
+# Import cars data
+import pandas as pd
+cars = pd.read_csv('cars.csv', index_col = 0) # creating Pandas-table from CSV
+
+# Print out country column as Pandas Series
+print(cars["country"])  ##  print(cars.loc[:,"country"])
+
+# Print out country column as Pandas DataFrame
+print(cars[["country"]]) ##  print(cars.loc[:,["country"]])
+
+# Print out DataFrame with country and drives_right columns
+print(cars.loc[:,['country','drives_right']])
+
+# Print out first 3 observations
+print(cars.iloc[0:3,:])
+
+# Print out fourth, fifth and sixth observation
+print(cars.iloc[3:6,:])
+
+# Print out drives_right value of Morocco
+print(cars.loc[["MOR"],["drives_right"]])
+
+# Print sub-DataFrame
+print(cars.loc[["RU","MOR"],["country","drives_right"]])
+
+
+
+

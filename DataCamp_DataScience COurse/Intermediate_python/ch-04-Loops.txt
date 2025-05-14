@@ -1,0 +1,65 @@
+
+##### Loop over DataFrame 
+
+# Data_Table
+         cars_per_cap        country  drives_right
+    US            809  United States          True
+    AUS           731      Australia         False
+    JPN           588          Japan         False
+    IN             18          India         False
+    RU            200         Russia          True
+    MOR            70        Morocco          True
+    EG             45          Egypt          True
+    
+    
+##### code-01
+
+# Import cars data
+import pandas as pd
+cars = pd.read_csv('cars.csv', index_col = 0)
+
+# Adapt for loop
+for lab, row in cars.iterrows() :
+    print(str(lab)+": " +str(row["cars_per_cap"])) ;
+   
+# op :
+    US: 809
+    AUS: 731
+    JPN: 588
+    IN: 18
+    RU: 200
+    MOR: 70
+    EG: 45
+    
+###### code-02
+
+# Import cars data
+import pandas as pd
+cars = pd.read_csv('cars.csv', index_col = 0)
+
+# Code for loop that adds COUNTRY column
+for lab , row in cars.iterrows() :
+    cars.loc[lab,"COUNTRY"] = row["country"].upper()
+
+
+# Print cars
+print(cars)
+
+#op :
+    
+         cars_per_cap        country  drives_right        COUNTRY
+    US            809  United States          True  UNITED STATES
+    AUS           731      Australia         False      AUSTRALIA
+    JPN           588          Japan         False          JAPAN
+    IN             18          India         False          INDIA
+    RU            200         Russia          True         RUSSIA
+    MOR            70        Morocco          True        MOROCCO
+    EG             45          Egypt          True          EGYPT
+    
+###### code-3
+ # Import cars data
+import pandas as pd
+cars = pd.read_csv('cars.csv', index_col = 0)
+
+# Use .apply(str.upper)
+cars["COUNTRY"] = cars["country"].apply(str.upper)  # op : same (but better time and space complexity)
