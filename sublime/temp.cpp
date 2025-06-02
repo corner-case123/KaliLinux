@@ -21,3 +21,10 @@ void setIO(const string io = "a") {
     freopen("out.txt", "w", stdout) ;
 }
 
+
+int main(){
+    ll n ; cin >> n ;  
+    cout << n << endl; 
+    cout << __cplusplus << endl ;
+    return 0  ;
+}
