@@ -1,0 +1,26 @@
+		this is a dope method on how to apply combination 
+**|**|* with k-1 bars we can distribute n objects into k groups 
+
+-> bars & stars method allows to build up combination 
+	-> like we can add a new color or new bar or new star as we want 
+	-> its like dp , build a large one on top of a smaller one 
+	
+	ex : https://codeforces.com/problemset/problem/553/A
+		https://www.spoj.com/problems/UCV2013E/
+		https://atcoder.jp/contests/abc110/tasks/abc110_d
+		-> 1 st problem : we can only solve for color 1 , then add color 2 , then 3 and so on
+		-> 2 nd problem : solve for 1 dim , then add 2nd , then 3rd and so on 
+		-> 3 rd problem : prime factorize m ; distribute primes 1by1, build one on top the other
+		-> this makes bar & star very powerful
+
+no_of_ways : (n+k-1)C(k-1)  or (n+k-1)Cn  
+	idea : we start with total number of objects(n+k-1) 
+		from them we select k-1 as bars or n as stars (very sexy way)
+		
+no of soln of eqn : X1 + X2 + .. + Xk = n   (Xi >= 0 and Xi integer)
+	no of soln : (n+k-1)Cn or (n+k-1)C(k-1)
+	
+	
+no of soln of eqn : X1 + X2 + .. + Xk = n   (Xi >= C and Xi integer)
+	mod : X1' + X2' + ... + Xn' = n - k*C  (X1'>=0 and X1' integer)
+	

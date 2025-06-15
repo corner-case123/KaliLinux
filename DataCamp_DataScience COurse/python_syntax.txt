@@ -1,0 +1,19 @@
+
+
+BASIC PYTHON LOOP :
+
+fam = [1.73, 1.68, 1.71, 1.89] 
+for index, height  in enumerate(fam) : 
+	print("index " + str(index) + ": " + str(height)) 
+	
+for c in "family" : 
+	print(c.capitalize())  // F A M I L Y
+	
+	
+world = { 
+	"afghanistan":30.55, 
+	"albania":2.77,  
+	"algeria":39.21 
+}  
+for key, value in world.items() : 
+	print(key + " -- " + str(value))

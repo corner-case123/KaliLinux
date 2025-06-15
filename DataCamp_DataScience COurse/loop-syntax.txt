@@ -1,0 +1,11 @@
+
+
+NUMPY 
+
+brics = pd.read_csv("brics.csv", index_col = 0)
+for lab, row in brics.iterrows():  // lab holds index , row holds each row as pandas_series
+	print(lab) 
+	print(row)  
+	
+for lab, row in brics.iterrows():  // only show label ,and capital for each row 
+	print(lab + ": " + row["capital"])   // RU: Moscow 

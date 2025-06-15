@@ -1,31 +1,190 @@
+pandas is built on NumPy and Matplotlib , pandas uses NumPy arrays under the hood to store and manipulate data
+import pandas as pd  
 
---> dogs is a DataFrame
+SOME DataFrame METHODS :
 
-methods of Pandas DataFrame :
-	print(dogs.head()) 
-	print(dogs.info()) 
-	print(dogs.shape)  
-	print(dogs.describe()) 
-	print(dogs.values)
-	print(dogs.columns) 
-	dogs.index 
+print(dogs.head(10)) 	// shows first 10 rows , default = 5
+print(dogs.info())  	// shows each col and not_null_count for them
+print(dogs.shape)  		// (num_rows,num_columns)
+print(dogs.describe())  // for all  numeric columns shows mean,min,max,std,count etc.
+print(dogs.values) 		// all rows 
+print(dogs.columns) 	// all column_names 
+dogs.index 				// num of columns
 
-sorting :
-	dogs.sort_values("weight_kg", ascending=False)
+
+
+Pandas_Series : {"col":"value_for_that_row"} kinda like dictionary
+
+dict = {  
+	"country":	 ["Brazil", "Russia", "India", "China", "South Africa"], 
+	"capital":	 ["Brasilia", "Moscow", "New Delhi", "Beijing", "Pretoria"], 
+	"area":		 [8.516, 17.10, 3.286, 9.597, 1.221] ,
+	"population":[200.4, 143.5, 1252, 1357, 52.98] 
+} 
+
+sample pandas(brics) DataFrame : 
+
+       Country    Capital  Area (million km²)  Population (millions)
+BR       Brazil   Brasília              8.516                  200.40
+RU       Russia     Moscow             17.100                  143.50
+IN        India  New Delhi              3.286                 1252.00
+CH        China    Beijing              9.597                 1357.00
+SA  South Africa   Pretoria              1.221                  52.98
+
+dogs DataFrame :
+
+|   | name    | breed       | color | height_cm | weight_kg |
+| - | ------- | ----------- | ----- | ---------- | ---------- |
+| 0 | Bella   | Labrador    | Brown | 56         | 18         |
+| 1 | Charlie | Poodle      | Black | 43         | 77         |
+| 2 | Lucy    | Chow Chow   | Brown | 25         | 22         |
+| 3 | Cooper  | Schnauzer   | Gray  | 23         | 17         |
+| 4 | Max     | Labrador    | Black | 46         | 29         |
+| 5 | Stella  | Chihuahua   | Tan   | 49         | 2          |
+| 6 | Bernie  | St. Bernard | White | 59         | 74         |
+
+ 
+Dict to DataFrame : brics = pd.DataFrame(dict)  			 // key = col , values are placed in order 
+setting index : brics.index = ["BR", "RU", "IN", "CH", "SA"] // from 0 based to custom_index
+
+CSV to DataFrame :   brics = pd.read_csv("path/to/brics.csv") 
+setting index_col :  brics = pd.read_csv("path/to/brics.csv", index_col = 0) 
+
+
+ACCESS ROW-COL : DataFrame.loc[rows, columns] ; DataFrame.iloc[rows,columns] ; DataFrame[column] ;DataFrame[[col1,col2,..]]
+
+	 loc (label-based)
+	 iloc (integer position-based)
+ 
+	COL-ACCESS :
+		col access : brics["country"]  // shows the country col
+		type(brics["country"]) // pandas.core.series.Series (1D labeled array)
+
+		brics[["country"]] // both show the nearly the same result
+		type(brics[["country"]])  // pandas.core.frame.DataFrame 
+
+		// both these show similar output , but first one is just a col-series , latter is a sub data-frame  of brics
+
+		brics[["country", "capital"]]  // shows 2 cols (sub dataframe)
+
+
+	ROW ACCESS :
+		brics[1:4] // row 1st to 3rd 
+		brics.loc["RU"] 	// row as pandas series 
+		brics.loc[["RU", "IN", "CH"]]   // row as DataFrame
+		brics.iloc[[1,2,3]]   // 2,3,4-th row 
+
+	BOTH ROW AND COL :
+		brics.loc[["RU", "IN", "CH"], ["country", "capital"]] 
+		brics.loc[:, ["country", "capital"]]  // all row , 2 col
+		brics.iloc[[1,2,3], [0, 1]]   		  // 2,3,4-th row , 1,2nd col
+		brics.iloc[1:4]  // row 1st to 3rd 
+		brics.iloc[:, [0,1]] 
+		brics.iloc[1:4, 0:2]  // 2,3,4-th row , 1,2-nd col
+		
+	
+CONDITIONAL SUBSETTING :
+
+	dogs["height_cm"] > 50  		// only boolean series 
+	dogs[dogs["height_cm"] > 50] 	// new-DataFrame
+	dogs[dogs["date_of_birth"] < "2015-01-01"] // new-DataFrame
+	dogs[ (dogs["breed"] == "Labrador") & (dogs["color"] == "Brown") ]  // logical_and  bracket around condn is must 
+	dogs[ (dogs["breed"] == "Labrador") | (dogs["color"] == "Brown") ]	// logical_or  
+	is_black_or_brown = dogs["color"].isin(["Black", "Brown"])  // shows black or brown dog
+
+ADD COLN :
+	brics["country_name_length"] = brics["country"].apply(len)   // len(brics["country"]) returns num of rows 
+	dogs["height_m"] = dogs["height_cm"] / 100 
+	dogs["bmi"] = dogs["weight_kg"] / dogs["height_m"] ** 2 
+
+INDEXING AND SUBSETTING WITH INDEX :
+		
+	dogs_ind = dogs.set_index("name") 
+	dogs_ind.reset_index() 
+	dogs_ind.reset_index(drop=True) // erases the index_col
+	dogs_ind.loc[["Bella", "Stella"]] // rows having name="Bella" or "Stella" ("name" is index_col)
+
+	dogs_ind2 = dogs.set_index("breed") 
+	dogs_ind2.loc["Labrador"]   // rows having "breed" = "Labrador"
+	
+	dogs_ind3 = dogs.set_index(["breed", "color"]) 
+	dogs_ind3.loc[[("Labrador", "Brown"), ("Chihuahua", "Tan")]]
+		// "breed" = "Labrador" or "Brown" and  "color" = "Chihuahua" or "Tan" (index-subsetting)
+		
+	dogs_ind3.sort_index()   // sorting based on index 
+	dogs_ind3.sort_index(level=["color", "breed"], ascending=[True, False]) // first ascend by "color",then desc by "breed"
+
+	
+SORTING AND SLICING :
+	dogs.sort_values("weight_kg") // default ascending 
+	dogs.sort_values("weight_kg", ascending=False) // descending based on "weight_kg" col
+	dogs.sort_values(["weight_kg", "height_cm"]) 
 	dogs.sort_values(["weight_kg", "height_cm"], ascending=[True, False]) 
 	
-Subsetting multiple columns :
+	dogs_srt = dogs.set_index(["breed", "color"]).sort_index() 
+	dogs_srt.loc["Chow Chow":"Poodle"]  // sorted index_slicing   breed "Chow Chow" to  "Poodle" is returned
+	dogs_srt.loc[("Labrador", "Brown"):("Schnauzer", "Grey")]  // "Labrador", "Brown" to "Schnauzer", "Grey"
 
-	 dogs["name"]
-	 dogs[["breed", "height_cm"]]
+	dogs_srt.loc[:, "name":"height_cm"]   // all rows and col "name" to "height_cm"
+	
+	dogs_srt.loc[("Labrador", "Brown"):("Schnauzer", "Grey"),  "name":"height_cm"] // slicing both row and col
+	 
+	dogs = dogs.set_index("date_of_birth").sort_index() 
+	dogs.loc["2014-08-25":"2016-09-16"]     // slicing-rows  on index-col "date"
+	dogs.loc["2014":"2016"]  				//slice-rows on  date "2014-01-01" to "2016-12-31" 
+	print(dogs.iloc[2:5, 1:4]) 				// slice both rows and cols
+
  
- 
-Subsetting based on conditions :
-	 dogs[dogs["breed"] == "Labrador"]
-	 dogs[dogs["date_of_birth"] < "2015-01-01"] 
-	 dogs[ (dogs["breed"] == "Labrador") & (dogs["color"] == "Brown") ]
-     
-     
-Subsetting using .isin() :
-     is_black_or_brown = dogs["color"].isin(["Black", "Brown"]) 
-     dogs[is_black_or_brown] 
+
+AGGREGATE METHODS :
+	
+	dogs["height_cm"].mean() // also : .median() , .mode(), .min() , .max(), .var() , .std() , .sum() , .quantile()
+	cumulative statistics : .cusum() , .cummax() , .cumprod() , .cummin()   // returns a series showing cumulative results
+	// return mean of all the values in the coln
+	
+	.agg() methods : allows to apply custom aggregate_functions
+		
+		def pct30(column): 
+			return column.quantile(0.3)
+		def pct40(column): 
+			return column.quantile(0.4) 	
+			
+		dogs["weight_kg"].agg(pct30) 
+		dogs[["weight_kg", "height_cm"]].agg(pct30) // returns a value >= 20% of the rows
+		dogs["weight_kg"].agg([pct30, pct40]) 
+
+DATA CLEAN-UP :
+
+DROP_DUPLICATES :
+
+	dogs.drop_duplicates(subset="name") 
+	unique_dogs = vet_visits.drop_duplicates(subset=["name", "breed"])  
+	unique_dogs["breed"].value_counts()  		// show count of each breed of dogs 
+	unique_dogs["breed"].value_counts(sort=True)  // show sorted count of each breed of dogs 
+	unique_dogs["breed"].value_counts(normalize=True) // shows breed_type_count/total_count 
+
+GROUPED-SUMMARY :
+
+	dogs.groupby("color")["weight_kg"].mean() // grouped  on "color" , mean of "weight_kg" is given for each "color"
+	dogs.groupby("color")["weight_kg"].agg([min, max, sum]) 
+	dogs.groupby(["color", "breed"])["weight_kg"].mean() 
+	dogs.groupby(["color", "breed"])[["weight_kg", "height_cm"]].mean() 
+	licenses_owners.groupby("title").agg({'account':'count'}) //apply "count" func on account col..for each "title" group
+	
+	
+PIVOT-TABLE  :
+	by default , the row and col labels are sorted in  ascending order 
+	we use one col as row-lable and one-col as col-label , and a 3rd col for the value 
+	dogs.pivot_table(values="weight_kg", index="color") 			// for each color show  mean weight (default=np.mean)
+	dogs.pivot_table(values="weight_kg", index="color", aggfunc=np.median) 			 // for each color show their median
+	dogs.pivot_table(values="weight_kg", index="color", aggfunc=[np.mean, np.median]) // for each color,show mean,median
+	dogs.pivot_table(values="weight_kg", index="color", columns="breed") // "color"=row,"breed"=col,val="weight_kg"
+		// for each ("color","breed") show their mean(default) "weight_kg"
+		
+	dogs.pivot_table(values="weight_kg", index="color", columns="breed",fill_value=0, margins=True)
+		// "fill_value" assign 0 to missing values // margins adds a col showing mean of each row (eg:"Black","Brown")
+		
+	dogs_height_by_breed_vs_color = dog_pack.pivot_table( values="height_cm", index="breed", columns="color")  
+	dogs_height_by_breed_vs_color.loc["Chow Chow":"Poodle"]  // breed "Chow Chow" to "Poodle"
+	dogs_height_by_breed_vs_color.mean(axis="index")  // mean height per-"color" 
+	dogs_height_by_breed_vs_color.mean(axis="columns")  // mean height per-"breed"

@@ -1,0 +1,43 @@
+import numpy as np
+
+/numpy array supports strong iterative array_operations 
+
+1-D NUMPY ARRAY 
+
+	list into numpy_array  : np_height = np.array([1.73, 1.68, 1.71, 1.89, 1.79]) 
+	np_weight = np.array([65.4, 59.2, 63.6, 88.4, 68.7]) 
+	bmi = np_weight / np_height ** 2  		// array([ 21.852,  20.975,  21.75 ,  24.747,  21.441]) 
+	
+2-D NUMPY ARRAY 
+	np_height = np.array([1.73, 1.68, 1.71, 1.89, 1.79]) 
+	np_weight = np.array([65.4, 59.2, 63.6, 88.4, 68.7]) 
+	meas = np.array([np_height, np_weight]) 
+	
+	[ 1.73  1.68  1.71  1.89  1.79] 
+	[ 65.4  59.2  63.6  88.4  68.7] 
+	for val in np.nditer(meas) : 
+		print(val)  // prints the 2-D array element by element
+
+COMPARISON OPERATORS 
+
+bmi > 23  			// array([False, False, False,  True, False], dtype=bool) 
+bmi[bmi > 23] 		// array([ 24.747]) 
+
+
+MULTI-COMPARISON :
+
+	np.logical_and()
+	np.logical_or()
+	np.logical_not()
+	
+np.logical_and(bmi > 21, bmi < 22)  	// array([True, False, True, False, True], dtype=bool) 
+bmi[np.logical_and(bmi > 21, bmi < 22)] // array([21.852, 21.75, 21.441]) 
+
+brics[np.logical_and(brics["area"] > 8, brics["area"] < 10)]  // applying in DataFrame 
+
+
+NUMPY_RANDOM :
+
+np.random.seed(123)    
+np.random.rand()  // 0.0 <= value < 1.0
+ np.random.randint(0,2)  // 0 or 1 randomly 

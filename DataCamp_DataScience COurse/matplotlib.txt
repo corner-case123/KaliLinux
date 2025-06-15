@@ -1,0 +1,63 @@
+import matplotlib.pyplot as plt  // import the lib
+plt.clf()  // to clean up the plot
+help(plt.scatter) help(plt.plot) help(plt.hist) // always better to take help
+seaborn is built based on matplotlib 
+
+there are 2 types of plots : figure-level , axes-level 
+	axes-level -> one single plot : more-customizable 
+		ex : scatterplot(), lineplot(), countplot()
+		
+	figure-level plot -> multiple plots together (grid-type row*col) : less customizable
+		ex : relplot() , scatterplot() , displot()
+		
+AXES-PLOT :
+
+CUSTOMIZATION FUNCTIONS FOR AXES-PLOTS : 
+
+lt.xlabel('Year') 
+plt.ylabel('Population') 
+plt.title('World Population Projections') 
+
+plt.yticks([0, 2, 4, 6, 8, 10]) // only ticks 
+plt.xticks([0, 2, 4, 6, 8, 10]) // only ticks 
+
+plt.yticks([0, 2, 4, 6, 8, 10],  ['0', '2B', '4B', '6B', '8B', '10B'] ) // first is tick ,second is tick label
+plt.xticks([1000,10000,100000], ['1k','10k','100k']) 				    // first is tick ,second is tick label
+
+select the plot type : 
+	plt.plot() -> line plot 
+	plt.scatterplot() -> point plot 
+	
+LINE AND POINT PLOTS
+
+year = [1950, 1970, 1990, 2010] 
+pop = [2.519, 3.692, 5.263, 6.972] 
+
+plt.plot(year, pop)   ->(x=year,y=pop) (line plot)
+plt.scatter(year,pop) ->(x=year,y=pop) (point plot)
+plt.show()
+
+
+
+HISTOGRAM :
+	// bins =  no_of_division between min and max range
+	
+	values = [0,0.6,1.4,1.6,2.2,2.5,2.6,3.2,3.5,3.9,4.2,6] 
+	plt.hist(values, bins=3) 
+	plt.show()
+	
+	dog_pack["height_cm"].hist(bins=20) 	// histogram on "height_cm" col , default bins=5 
+
+
+
+BAR-PLOT :
+	avg_weight_by_breed = dog_pack.groupby("breed")["weight_kg"].mean()  // for each "breed" return mean "weight_kg"
+	avg_weight_by_breed.plot(kind="bar", title="Mean Weight by Dog Breed") 
+	plt.show()
+	
+LINE PLOT :
+
+	df.plot(x="date",  y="weight_kg",  kind="line") 
+	plt.show()
+	df.plot(x="date", y="weight_kg", kind="line", rot=45) // x-axis labels are rotated 45*
+	plt.show()
