@@ -10,20 +10,26 @@
 5) simplify/modify the problem and form/modify equation from statement : 11
   -> use math equation and inequality to solve : 3
 6) bold claim/intuitive claim (without proof): 5
-7) lets say i have a soln &&  what characteristics would it have / working from soln / working backwards : 8
+7) lets say i have a soln &&  what characteristics would it have / working from soln / working backwards :9
 8) similar to past problems : 10
 9) formulate the problem-statement / make a proper structure from the statement  : 3
 10) solid knowledge/theory : 2
-11) solving by sub-problems/components/different cases(for n%2==0 soln1 and n%2==1 soln2) : 19
+11) solving by sub-problems/components/different cases(for n%2==0 soln1 and n%2==1 soln2) : 20
 12) soln design using DS : 4
+13) build up soln  : 
+	-> we have to solve for n dimensions 
+	-> first solve for 1 dim , then add 2nd one , then 3rd and so on
+	-> make sure this property is applicable (counting problems nCr,bar & star)
+
+
 ## think in a dp manner -> how we transition from one state (choice) to another :  8
   -> this also helps to find proof 
 ## look at the constraints , conditions and sample cases
-  -> can you find any soln idea or observation from sample :  6
-  -> do you see any special constraint or condition that can provide  hint or give  idea : 4
+  -> can you find any soln idea or observation from sample :  7
+  -> do you see any special constraint or condition that can provide  hint or give  idea : 5
 ## check if it has a monotonic property or not : 7
 ## deal with the problems first  :  3
-  ->lets say i have to minimise some cost 
+  -> lets say i have to minimise some cost 
   -> for this , check which entities affects my minimum cost the most
   -> deal with them first 
 

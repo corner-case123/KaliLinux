@@ -45,3 +45,13 @@ string convertBase(const string &num, int baseA, int baseB) {
     reverse(result.begin(), result.end());
     return result;
 }
+
+// finding a % b  , where "a" is a very large number 
+// time : O(a.size())
+long long stringMod(const string &a, long long b) {
+    long long result = 0;
+    for (char c : a) {
+        result = (result * 10 + (c - '0')) % b;
+    }
+    return result;
+}

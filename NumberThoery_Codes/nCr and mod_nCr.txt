@@ -1,0 +1,44 @@
+
+// if we dont want to mod 
+// note : starting from r1=1 and not r1=r makes the division much easier 
+ll nCr(ll n,ll r){
+	r = min(r,n-r) ;
+	ll val =1  ;
+	ll r1 = 1 ; 
+	for(ll i=n;i>=(n-r+1);i--){
+		val *= i ;
+		while(r1<=r and val%r1==0) val /=r1++ ; 
+	}
+	return val ; 
+}
+
+
+// mod with inverse very cool 
+
+ll mod = (ll)1e9+7 ;
+ll modpow(ll a, ll b, ll mod = mod) {
+    ll res = 1;
+    a %= mod;
+    while (b) {
+        if (b & 1) res = res * a % mod;
+        a = a * a % mod;
+        b >>= 1;
+    }
+    return res;
+}
+
+// Computes modular inverse of a under mod (a^-1 mod MOD)
+ll modinv(ll a, ll mod = mod) {
+    return modpow(a, mod - 2, mod);
+}
+
+// Computes nCr % MOD without precomputing factorials
+ll nCr(ll n, ll r) {
+    if (r < 0 || r > n) return 0;
+    ll res = 1;
+    for (ll i = 1; i <= r; ++i) {
+        res = res * (n - r + i) % mod;
+        res = res * modinv(i) % mod;
+    }
+    return res;
+}
