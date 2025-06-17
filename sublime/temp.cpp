@@ -15,16 +15,14 @@ using namespace std;
 
 
 
+
 void solve(){
     
-    return ; 
 }
 
 int main(){
-    ll t ; cin >> t ; cout << t << endl  ;
-    return 0 ; 
     fastio ;
-    ll t =  1 ; //cin >> t ;
+    ll t =  1 ; cin >> t ;
     for(ll i=1;i<=t;i++){
         solve() ;
     }

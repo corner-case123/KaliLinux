@@ -1,6 +1,6 @@
 
 
--> Soln Tags :
+-> Soln Tags : (find_easier_idea**+observation+finding_concrete_idea with more cases) (constructive ideas)
 
 1) observation : 14
   -> print things and find pattern : 1 

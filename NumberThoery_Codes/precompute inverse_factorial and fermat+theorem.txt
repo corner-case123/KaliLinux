@@ -1,0 +1,39 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+const int MOD = 1'000'000'007;
+const int MAX = 1'000'005;
+
+vector<long long> fact(MAX), invFact(MAX);
+
+// Modular exponentiation
+long long modpow(long long base, long long exp) {
+    long long res = 1;
+    base %= MOD;
+    while (exp > 0) {
+        if (exp & 1) res = res * base % MOD;
+        base = base * base % MOD;
+        exp >>= 1;
+    }
+    return res;
+}
+
+// Precompute factorials and inverse factorials
+void precompute() {
+    fact[0] = invFact[0] = 1;
+    for (int i = 1; i < MAX; ++i)
+        fact[i] = fact[i - 1] * i % MOD;
+
+    invFact[MAX - 1] = modpow(fact[MAX - 1], MOD - 2);
+    for (int i = MAX - 2; i >= 1; --i)
+        invFact[i] = invFact[i + 1] * (i + 1) % MOD;
+}
+
+// fermat's theorem : x^(-1) = x^(mod-2)   [calculate base value with this formula]
+
+// inverse of factorial (iterative approach)
+
+(i+1)! ^(-1) = 1/(i!)*(i+1) = (i!)^(-1)/(i+1)
+
+-> (i!)^(-1) = (i+1)! ^ (-1)  * (i+1) 
