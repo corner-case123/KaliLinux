@@ -20,9 +20,10 @@
 	-> we have to solve for n dimensions 
 	-> first solve for 1 dim , then add 2nd one , then 3rd and so on
 	-> make sure this property is applicable (counting problems nCr,bar & star)
+14) for small constraint always consider dp soln : 1 
 
 
-## think in a dp manner -> how we transition from one state (choice) to another :  8
+## think in a dp manner -> how we transition from one state (choice) to another :  9
   -> this also helps to find proof 
 ## look at the constraints , conditions and sample cases
   -> can you find any soln idea or observation from sample :  7
