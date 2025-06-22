@@ -1,8 +1,8 @@
 
 
--> Soln Tags : (find_easier_idea**+observation+finding_concrete_idea with more cases) (constructive ideas)
+-> Soln Tags :(*****constructive_skills/algo: 5)
 
-1) observation : 14
+1) observation : 15
   -> print things and find pattern : 1 
 2) logical analysis of problem +  claim/hypothesis/deduction : 59
 3) dry-run some cases and look at the findings/problem from diff. angle : 19
@@ -36,8 +36,8 @@
 
 
 tips : ## sometimes there are some important corner cases make sure to handle them
-1) sometimes make  some claim like : this loop will not run for long 
-2) pure brute-force
+1) sometimes make  some claim like (eg:this loop will not run for long or this is the best way) : 1  
+2) pure brute-force : 1 
 3) consider/simulate all the cases before starting to code 
 4) dont over-complicate , start from unoptimized , then  go to optimization , not the other way around 
 5) check if soln. is hidden in the sample cases !!!!!!!!!

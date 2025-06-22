@@ -12,35 +12,73 @@
 using namespace std;
 #define fastio ios_base::sync_with_stdio(0); cin.tie(0)
 
-int main() {
-    fastio;
 
-    ll n, m ; cin >> n >> m ;
-    vector<vll> edges; 
 
-    for (ll i = 0; i < m; i++) {
-        ll u, v, w; cin >> u >> v >> w;
-        edges.push_back({--u, --v, w});
+void solve(){
+    ll n , m ; cin >> n >> m ;  
+    ll mn = n , mx = (n*(n+1) )/2 ;  
+    vll ans ; 
+    if (m>mx or m<mn){
+        cout << -1 << endl ;
+        return ;
+    }
+    ll i = 1 ; 
+    for(;i<=n;i++){
+        ll val = (n-i+1) +  (  (i-1)*(n+ n-(i-2)) )/2 ;
+        if (n-(i-2)<=1) continue ; 
+        if (m<=val) break ; 
     }
 
-    vll dp(n, 1e18);
-    dp[0] = 0;
-
-    for (ll i = 1; i < n; i++) {
-        for (auto &e : edges) {
-            ll u = e[0], v = e[1], w = e[2];
-            if (dp[u] < 1e18 && dp[u] + w < dp[v]) {
-                dp[v] = dp[u] + w;
+    // use len i 
+    //cout << i << endl ;
+    set<ll> st ; for(ll i=1;i<=n;i++) st.insert(i) ;
+    if (i==1){
+        for(ll val=1;val<=n;val++){
+            ans.push_back(val) ; 
+        }
+    }
+    else if (i==2){
+        ans.push_back(m-(n-1) ) ;
+        for(ll j=1;j<=n;j++){
+            if ( j!=(m-(n-1))){
+                //cout << j << endl ;
+                ans.push_back(j) ;
             }
         }
     }
-    for (auto &e : edges) {
-        ll u = e[0], v = e[1], w = e[2];
-        if (dp[u] < 1e18 && dp[u] + w < dp[v]) {
-            cout << "YES" << endl ;
-            return 0 ;
-        }
+    else {
+        for(ll top=1;top<=n;top++){
+            if (top-(i-3)<=0) {
+                continue ;
+            }
+            ll val = (n-i+1) +  (  (i-1-1)*(n+ n-(i-2-1)) )/2 ;
+
+            if ( m-val<=1 or m-val>=n-(i-2-1) ) {
+                continue ;
+            }
+            //cout << top << endl ;
+            ll x = i-2 , p_val = top ; 
+            while(x--){
+                ans.push_back(p_val) ;
+                st.erase(p_val) ;
+                p_val-- ;  
+            }
+            ans.push_back(1) ; st.erase(1) ;
+            for(auto &e:st) ans.push_back(e) ;
+            if (!ans.empty()){
+                break ;
+            }
+        }    
     }
-    cout << "NO" << endl ; 
+    cout << ans[0] << endl ;
+    for(ll i=0;i<n-1;i++){
+        cout << ans[i] << " " << ans[i+1] << endl ;
+    }
+    return ;
+}
+int main() {
+    fastio;
+    ll t =1; cin >> t  ;
+    while(t--) solve() ;
     return 0;
 }
