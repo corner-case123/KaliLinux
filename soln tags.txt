@@ -1,20 +1,20 @@
 
 
--> Soln Tags :(*****constructive_skills/algo: 5)
+-> Soln Tags :(*****constructive_skills/algo: 6)
 
 1) observation : 15
   -> print things and find pattern : 1 
 2) logical analysis of problem +  claim/hypothesis/deduction : 59
 3) dry-run some cases and look at the findings/problem from diff. angle : 19
 4) solve the problem for simpler cases and then solve the actual problem : 6
-5) simplify/modify the problem and form/modify equation from statement : 11
+5) simplify/modify the problem and form/modify equation from statement : 12
   -> use math equation and inequality to solve : 3
 6) bold claim/intuitive claim (without proof): 5
 7) lets say i have a soln &&  what characteristics would it have / working from soln / working backwards :9
 8) similar to past problems : 10
 9) formulate the problem-statement / make a proper structure from the statement  : 3
 10) solid knowledge/theory : 2
-11) solving by sub-problems/components/different cases(for n%2==0 soln1 and n%2==1 soln2) : 20
+11) solving by sub-problems/components/different cases(for n%2==0 soln1 and n%2==1 soln2) : 21
 12) soln design using DS : 4
 13) build up soln  : 
 	-> we have to solve for n dimensions 

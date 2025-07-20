@@ -1,0 +1,130 @@
+key stakeholders :
+
+🧑‍🎓 Students
+Primary users of the  system.
+Can view daily , place order and provide feedback
+
+👨‍🍳 Cafeteria Staff
+
+Handle order preparation and queue management.
+View real-time order lists and serves food 
+
+📦 Inventory Manager
+
+Manages stock levels of ingredients and supplies.
+Utilizes usage trends to restock from vendors 
+
+🧑‍💼 Admin
+Oversees budget , cost  and overall system 
+Approves special meal requests,budget and reviews all reports
+and complaints 
+
+🧾 Open-Ended Questions
+1️⃣ How do you currently ensure meal quality and availability?
+
+2️⃣ What process do you follow for tracking inventory and restocking ingredients?
+
+3️⃣ Can you describe how you manage daily meal planning?
+
+4️⃣ What challenges do you face when dealing with large crowds or peak hours?
+
+5️⃣ How do you perform cost and budget management ?
+
+
+Closed Questions
+
+How often do you experience food quality issue or food unavailability?
+Is there a feedback system currently available in the cafeteria?
+Are you satisfied with the current cafeteria menu options?
+Are you satisfied with how inventory and budget are currently managed?
+
+Probes
+
+Why do you think food runs out quickly during certain meal times?
+Can you share a situation where you or others raised a complaint about food or service and how it was handled?
+Can you describe any recent instance where the food quality was not satisfying?
+If you had access to a digital system, what features would you like it to include?
+
+
+
+
+Primary Objective of the Questionnaire
+
+	To quantitatively assess the needs, preferences, and concerns of 
+	IUT students, Cafeteria staff, admin, and 
+	inventory managers regarding the current operations and 
+	potential digital transformation of the Cafeteria system.
+
+	This helped validate insights gathered through interviews and 
+	observations, and to identify common pain points and system requirements 
+	across all roles like : food quality, queue management, 
+	inventory tracking, and feedback collection.
+	
+Sample Questions
+
+	Would you like to order meal online through a student portal or app?
+
+	What features would you find most helpful in a digital Cafeteria system?
+
+
+
+🍽️ Key Outcomes From Student Interviews
+✅ Demand for better management 
+Students emphasized the need for a system working on food and service
+
+😟 Concern
+Frequent complaints about poor food quality , hygiene and availability.
+
+⭐ Top Feature Requests
+View menu and food/service rating system.
+Digital queue/slot booking to avoid long lines.
+
+
+👨‍🍳 Key Outcomes From  Cafeteria Staff Interviews
+
+✅ Need for Balanced Counter Load & Predictable Meal Count
+Staff highlighted frequent overcrowding at one counter and the challenge of estimating daily meal turnout.
+
+😟 Concern
+Current system lacks any  data on student meal plans 
+(who is expected to show up),
+causing both under-preparation and over-preparation of food.
+
+⭐ Top Feature Requests
+
+Queue balancing system.
+Dashboard showing meal orders and counts 
+Trackable complaint history.
+
+
+👨‍🍳 Key Outcomes From  inventory manager  Interviews
+✅ Need for Real-Time Stock Tracking
+Managers struggle with forecasting due to lack of visibility on current stock levels and consumption rates.
+
+😟 Concern
+Manual inventory updates often cause overstocking or sudden shortages; no alerts for low or expiring items.
+
+⭐ Top Feature Requests
+
+Real-time stock dashboard.
+Auto-alerts for low stock or expiry.
+Usage-based forecasting tools.
+
+
+
+
+🗂️ Key Outcomes From Admin Interviews
+✅ Need for Operational Oversight & Budget Control
+Admins want tools to monitor overall service quality,  track budget and costs.
+
+😟 Concern
+Lack of a centralized system makes it hard to detect inventory discrepancies, validate budget use, or monitor feedback .
+
+⭐ Top Feature Requests
+
+Budget and inventory audit report
+Feedback report
+
+
+
+

@@ -31,7 +31,6 @@ int main() {
         ll u ,v ,w ; cin >> u >> v >> w ;
         dp[--u][--v] = w ;
         dp[v][u] = w  ;
-        //cout << u << " " << v << " "<< dp[u][v] << endl ;
     }
     for(ll i=0;i<n;i++){
         dp[i][i] = 0 ; 
