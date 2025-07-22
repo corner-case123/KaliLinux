@@ -15,7 +15,7 @@ using namespace std;
 
 
 
-void solve(){
+int main(){
     ll n , k ; cin >>n>>k ;
     vll diff(n,0) ;
     string s ; cin >> s ;
@@ -43,17 +43,8 @@ void solve(){
     //cout << score << endl ;
     if (score<k){
         cout << -1 << endl ;
-        return ;
+        return 0;
     }
     cout << level+1 << endl ;
-    return ; 
-}
-
-int main(){
-    fastio ;
-    ll t =  1 ; cin >> t ;
-    for(ll i=1;i<=t;i++){
-        solve() ;
-    }
-    return 0  ;
+    return 0; 
 }

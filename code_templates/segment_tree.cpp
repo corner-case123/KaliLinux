@@ -1,4 +1,8 @@
 #include <bits/stdc++.h>
+#include <ext/pb_ds/assoc_container.hpp>
+#include <ext/pb_ds/tree_policy.hpp>
+using namespace __gnu_pbds;
+typedef tree<int, null_type, std::less<int>, rb_tree_tag, tree_order_statistics_node_update> indexed_set;
 #define ln '\n'
 #define ull unsigned  long long
 #define ll long long
@@ -6,47 +10,102 @@
 #define pll pair<ll, ll>
 #define ff first
 #define vpll vector<pair<ll,ll>>
-#define pii pair<int,int> 
+#define pii pair<int,int> b
 #define ld long double
 #define ss second
 using namespace std;
-#define fastio ios_base::sync_with_stdio(0); cin.tie(0)
 
 
-// segment tree for sum
-struct SegmentTree {
-    ll n;
-    vector<ll> tree;
+class SegmentTree {
+	vector<ll> tree, lazy;
+	ll n;
 
-    SegmentTree(const vector<ll>& a) {
-        n = a.size();
-        tree.assign(4 * n, 0);
-        build(a, 1, 0, n - 1);
-    }
+	void build(const vector<ll> &arr, ll node, ll start, ll end) {
+		if (start == end) {
+			tree[node] = arr[start];
+		} else {
+			ll mid = (start + end) / 2;
+			build(arr, 2 * node, start, mid);
+			build(arr, 2 * node + 1, mid + 1, end);
+			tree[node] = tree[2 * node] + tree[2 * node + 1];
+		}
+	}
 
-    ll build(const vector<ll>& a, ll node, ll l, ll r) {
-        if (l == r) return tree[node] = a[l];
-        ll mid = (l + r) / 2;
-        return tree[node] = build(a, 2 * node, l, mid) + build(a, 2 * node + 1, mid + 1, r);
-    }
+	void propagate(ll node, ll start, ll end) {
+		if (lazy[node] != 0) {
+			tree[node] += (end - start + 1) * lazy[node];
 
-    ll update(ll node, ll l, ll r, ll idx, ll val) {
-        if (l == r) return tree[node] = val;
-        ll mid = (l + r) / 2;
-        if (idx <= mid)
-            return tree[node] = update(2 * node, l, mid, idx, val) + tree[2 * node + 1];
-        else
-            return tree[node] = tree[2 * node] + update(2 * node + 1, mid + 1, r, idx, val);
-    }
+			if (start != end) {  // Not a leaf node
+				lazy[2 * node] += lazy[node];
+				lazy[2 * node + 1] += lazy[node];
+			}
 
-    ll query(ll node, ll l, ll r, ll ql, ll qr) {
-        if (qr < l || ql > r) return 0;
-        if (ql <= l && r <= qr) return tree[node];
-        ll mid = (l + r) / 2;
-        return query(2 * node, l, mid, ql, qr) + query(2 * node + 1, mid + 1, r, ql, qr);
-    }
+			lazy[node] = 0;  // Reset lazy value
+		}
+	}
+
+	void range_update(ll node, ll start, ll end, ll l, ll r, ll value) {
+		propagate(node, start, end);
+
+		if (start > end || start > r || end < l) return;
+
+		if (start >= l && end <= r) {
+			tree[node] += (end - start + 1) * value;
+			if (start != end) {
+				lazy[2 * node] += value;
+				lazy[2 * node + 1] += value;
+			}
+			return;
+		}
+
+		ll mid = (start + end) / 2;
+		range_update(2 * node, start, mid, l, r, value);
+		range_update(2 * node + 1, mid + 1, end, l, r, value);
+
+		tree[node] = tree[2 * node] + tree[2 * node + 1];
+	}
+
+	ll query(ll node, ll start, ll end, ll l, ll r) {
+		propagate(node, start, end);
+
+		if (start > end || start > r || end < l) return 0;
+
+		if (start >= l && end <= r) return tree[node];
+
+		ll mid = (start + end) / 2;
+		ll left_sum = query(2 * node, start, mid, l, r);
+		ll right_sum = query(2 * node + 1, mid + 1, end, l, r);
+
+		return left_sum + right_sum;
+	}
+
+public:
+	SegmentTree(const vector<ll> &arr) {
+		n = arr.size();
+		tree.resize(4 * n);
+		lazy.resize(4 * n, 0);
+		build(arr, 1, 0, n - 1);
+	}
+
+	void range_update(ll l, ll r, ll value) {
+		range_update(1, 0, n - 1, l, r, value);
+	}
+
+	ll query(ll l, ll r) {
+		return query(1, 0, n - 1, l, r);
+	}
 };
 
-int main(){
-    return 0 ;
+
+int main() {
+	ios_base::sync_with_stdio(false);
+	cin.tie(NULL);
+	setIO() ;
+	ll t = 1 ;
+	cin >> t ;
+	for (ll i = 1; i <= t; i++) {
+		cout << "Case " << i << ":" << ln ;
+		solve() ;
+	}
+	return 0 ;
 }
