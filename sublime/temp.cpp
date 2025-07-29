@@ -1,13 +1,10 @@
 #include <bits/stdc++.h>
 #define ln '\n'
-#define ull unsigned  long long
 #define ll long long
-#define vll vector<ll>
 #define pll pair<ll, ll>
+#define vpll vector<pll>
+#define vll vector<ll>
 #define ff first
-#define vpll vector<pair<ll,ll>>
-#define pii pair<int,int> 
-#define ld long double
 #define ss second
 using namespace std;
 #define fastio ios_base::sync_with_stdio(0); cin.tie(0)
@@ -16,44 +13,35 @@ using namespace std;
 
 
 void solve(){
-    ll n , k ; cin >>n>>k ;
-    vll diff(n,0) ;
-    string s ; cin >> s ;
-    for(ll i=n-1;i>=0;i--){
-        if (s[i]=='1') diff[i]++ ;
-        else diff[i]-- ;
-    }
-    for(ll i=n-2;i>=0;i--){
-        diff[i]+=diff[i+1] ;
-    }
-    ll score = 0 , level = 0;
-    set<ll> st ;
-    for(ll i=0;i<n-1;i++) st.insert(diff[i+1]) ;
-    while(!st.empty() and score<k){
-        ll val = *(--st.end()) ;
-       //cout << val << endl ;//
-        st.erase(--st.end()) ;
-        if (val) score+=val , level++ ;
-    }
-    // for(ll i=0;i<n and score<k;i++){    
-    //     // if (s[i]=='1') s;
-    //     // else score -= diff ;
-    //     if (i<n-1 and diff[i+1]>0) level++ ,score+=diff[i+1]; 
-    // }
-    //cout << score << endl ;
-    if (score<k){
-        cout << -1 << endl ;
-        return ;
-    }
-    cout << level+1 << endl ;
-    return ; 
-}
+    ll n ; cin >> n ; 
+    vll a(n) ; for(auto &e:a) cin >> e ;
+    unordered_set<ll> st ; 
+    unordered_map<ll,ll> cnt , red ;
+    ll sm = 0 ;
+    ll mx_so_far = 0 , ix = -1;
 
-int main(){
-    fastio ;
-    ll t =  1 ; cin >> t ;
-    for(ll i=1;i<=t;i++){
-        solve() ;
+    for(auto &e:a){
+        if (e==0) cnt[0]++ , st.insert(0) ;
+        else if (cnt[e-1]-red[e-1]>0) { // O(1)
+            cnt[e]+= (cnt[e-1]-red[e-1]) ;
+            cnt[e-1] -= (cnt[e-1]-red[e-1]);
+            if (cnt[e-1]==0) st.erase(e-1) ;
+            st.insert(e) ;
+        }
+        for(auto &ele:st){ // 
+            sm += cnt[ele]*(ele+1) ;
+        }
+        for(auto &ele:st){ // 
+            if(ele<e){
+                red[ele] = cnt[ele] ;
+            }
+        }
     }
-    return 0  ;
+    cout << sm << endl; 
+}
+int main() {
+    fastio;
+    ll t = 1;  cin >> t;
+    while(t--) solve();
+    return 0;
 }

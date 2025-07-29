@@ -27,7 +27,7 @@ int main(){
         diff[i]+=diff[i+1] ;
     }
     ll score = 0 , level = 0;
-    set<ll> st ;
+    multiset<ll> st ;
     for(ll i=0;i<n-1;i++) st.insert(diff[i+1]) ;
     while(!st.empty() and score<k){
         ll val = *(--st.end()) ;

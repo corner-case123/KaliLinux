@@ -16,3 +16,16 @@ write this to get to target folder :
 
 	
 now run the .bat file : stress_test
+
+
+
+
+My student id (Last 3 digits): 243
+So the damping factor, α = 4.86 As
+So,
+If R = 1K ohm
+L = 102.88 H
+Therefore,
+L1 = L2 = 51.44 H
+For different values of C the Resonant frequency would change, creating three possible cases for the response of a second order circuit.
+Circuit
