@@ -1,47 +1,35 @@
 #include <bits/stdc++.h>
 #define ln '\n'
-#define ll long long
+#define ll long long 
 #define pll pair<ll, ll>
 #define vpll vector<pll>
 #define vll vector<ll>
 #define ff first
 #define ss second
+#include <ext/pb_ds/assoc_container.hpp>
+#include <ext/pb_ds/tree_policy.hpp>
+using namespace __gnu_pbds;
 using namespace std;
 #define fastio ios_base::sync_with_stdio(0); cin.tie(0)
+ template<class T>
+using ordered_set = tree<T,null_type,less<T>,rb_tree_tag,tree_order_statistics_node_update>;
+ 
 
-
-
-
-void solve(){
-    ll n ; cin >> n ; 
-    vll a(n) ; for(auto &e:a) cin >> e ;
-    unordered_set<ll> st ; 
-    unordered_map<ll,ll> cnt , red ;
-    ll sm = 0 ;
-    ll mx_so_far = 0 , ix = -1;
-
-    for(auto &e:a){
-        if (e==0) cnt[0]++ , st.insert(0) ;
-        else if (cnt[e-1]-red[e-1]>0) { // O(1)
-            cnt[e]+= (cnt[e-1]-red[e-1]) ;
-            cnt[e-1] -= (cnt[e-1]-red[e-1]);
-            if (cnt[e-1]==0) st.erase(e-1) ;
-            st.insert(e) ;
-        }
-        for(auto &ele:st){ // 
-            sm += cnt[ele]*(ele+1) ;
-        }
-        for(auto &ele:st){ // 
-            if(ele<e){
-                red[ele] = cnt[ele] ;
-            }
-        }
-    }
-    cout << sm << endl; 
+int palindrome(int i,int j,string s){
+    if (i>j) return 1 ;
+    if (s[i]==s[j]) return palindrome(i+1,j-1,s) ;
+    return 0 ; 
 }
+void solve(){
+    string word = "abccba" ;
+    printf("%d",palindrome(0,5,word)) ;
+
+    return ;
+}
+
 int main() {
     fastio;
-    ll t = 1;  cin >> t;
+    ll t = 1;  //cin >> t;
     while(t--) solve();
     return 0;
 }

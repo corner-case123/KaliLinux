@@ -1,0 +1,74 @@
+
+
+
+regular data type -> integer , char , float 
+
+but C-language only  understands integers 
+	-> so each char is encoded as an integer (for ex : 'a'->97 , 'b'->98)
+	
+Some properties related to char data-type 
+
+● char var;
+printf(“%c”, var); // var has garbage value , no initialized 
+● char a = ‘Hello’;
+printf(“%c”, a); // Only prints o (last char of string)
+● char x;
+scanf(“%c”, &x); // Only stores the first character (input : "hello" -> 'h')
+● char a = ‘@’;
+printf(“%d”, a); // Prints the ASCII value
+
+
+-> playing with ascii value of char 
+char a = ‘a’;
+a++; // Increment by 1 (incrementing ascii value)
+printf(“%c”, a); // Prints the next character
+a = 99; // Assign an integer to a char variable
+printf(“%c”, a); // Prints ‘c’ (ASCII value 99)
+
+
+WHAT ABOUT WORD ? 
+
+
+char word[5] = “Hello”; // declare string with size 
+char word[] = “Hello”;  // declare without size 
+
+
+printf(“%s”, word); // keeps printing char until '\0' found 
+	-> only works if string has null char at the end 
+	-> to use this string size must be string_len+1 
+		(example: for "hello" , minimum -> 5+1= 6 )
+
+
+WHAT ABOUT SENTENCE (space between words) ? 
+
+char word[100]; // The size is an assumption , but it's must 
+gets(word); // User input stored inside variable
+puts(word); // Prints the string along with a new line
+
+
+char word[100];
+gets(word);
+printf(“%c”, word[0]); // Prints the first element
+
+
+SOME STRING FUNCTIONS ? 
+
+● strlen(): Returns the length of a string
+● strcpy(): Copies a string
+● strcmp(): Compares two strings
+
+
+char str[] = “Brevity is the soul of wit.”;
+int size = strlen(str); // Returns the length , does not consider null char 
+
+char str1[] = “The fat cat sat on a mat.”;
+char str2[] = “The fat rat sat on a mat.”;
+int result = strcmp(str1, str2); // two strings that we want to compare
+	-> returns 0 when both string are same
+	-> return positive value , when 1st string larger than 2nd string
+	-> returns negative value , when 2nd string larger than 1st string
+	
+	
+char str1[] = “The cat is alive and dead at the same time.”;
+char str2[100] ;
+strcpy(str2, str1);  // copies str1 into str2 (makes str2 = str1)
