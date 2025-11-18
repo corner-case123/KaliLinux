@@ -1,0 +1,31 @@
+
+1) string find operation
+
+	string s  ; 
+	if (s.find("substr")!=string::npos) cout << "found" << endl ;
+	
+2) ABC-175F 
+	the soln idea was mine but the code was from gpt ..
+	the idea is start from one side and then move / compare inward
+	each of the n strings can appear any number of times 
+	
+	
+	IDEA : (MINE and it works -- top AC code) -> https://atcoder.jp/contests/abc175/submissions/70901679
+
+		The solution models the problem as recursively building palindromes by merging strings from both ends.
+		Each state is defined by a **leftover substring** (`cur`) and a **direction flag** (`dir`) indicating 
+		whether this leftover lies on the left or right side of the growing palindrome. Starting from any string `S[i]`,
+		the algorithm tries to merge it inward with every other string `S[j]`—character by character from the outer edges—until a mismatch occurs.
+		If the merge succeeds, the unmatched portion (the “leftover”) becomes the new state,
+		possibly on the opposite side depending on which string was consumed first. 
+		If the leftover is already a palindrome (or empty), the recursion stops with zero extra cost; otherwise,
+		the algorithm continues recursively, summing the corresponding string costs. To prevent redundant work,
+		results are memoized by `(cur, dir)`, and cycles are guarded against with an `inStack` check. 
+		The minimal cost across all valid merging sequences that form a palindrome is tracked, and if no combination works, 
+		`-1` is returned. In essence, this approach efficiently simulates the process of extending a string from either side until 
+		a palindrome is achieved, exploring all combinations through memoized DFS.
+
+
+3)ABC-176F  -> https://atcoder.jp/contests/abc176/tasks/abc176_f  (unresolved) -> dp problem
+
+4))ABC-177F -> https://atcoder.jp/contests/abc177/tasks/abc177_f (unresolved)
